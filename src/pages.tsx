@@ -9,6 +9,8 @@ const Terms = lazy(() => import("./pages/terms"));
 const AssetExtractorWeb = lazy(() => import("./pages/asset-extractor-web"));
 const UpdateFreqPage = lazy(() => import("./pages/update-freq"));
 const NotFound = lazy(() => import("./pages/not-found"));
+const Calculators = lazy(() => import("./pages/calculators"));
+const CrystalCalc = lazy(() => import("./pages/calculators/crystal"));
 
 export type PageDefinition = {
     PageName: string;
@@ -125,6 +127,28 @@ export const Pages: PageDefinition[] = [
             ...defaultMeta,
             ...GenPageMetaTags("Star Wars: Galaxy of Heroes Update Frequency grapher", "Update Frequency", "/update-frequency"),
         ]
+    },
+    {
+        PageName: "SWGoH Calculators",
+        PageTitle: `SWGoH Calculators - ${SiteShortLink}`,
+        PageElement: Calculators,
+        PageMainPath: "/calc",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("Star Wars: Galaxy of Heroes Calculators", "SWGoH Calculators", "/calc"),
+        ],
+    },
+    {
+        PageName: "SWGoH Crystal Calculator",
+        PageTitle: `SWGoH Crystal Calculator - ${SiteShortLink}`,
+        PageElement: CrystalCalc,
+        PageMainPath: "/calc/crystal",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("Star Wars: Galaxy of Heroes Crystal Calculator", "SWGoH Crystal Calculator", "/calc/crystal"),
+        ],
     },
     {
         PageName: "404",

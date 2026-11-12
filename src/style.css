@@ -32,6 +32,13 @@ body {
     background-color: var(--background-color-dark);
 }
 
+p,
+h1,
+h2,
+h3 {
+    color: var(--text-dark);
+}
+
 .common-button {
     display: inline-block;
     cursor: pointer;

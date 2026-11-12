@@ -24,6 +24,8 @@ export default defineConfig({
                 "Terms": "html/terms/index.html",
                 "Asset Extractor Web": "html/asset-extractor-web/index.html",
                 "Update Frequency": "html/update-frequency/index.html",
+                "SWGoH Calculators": "html/calc/index.html",
+                "SWGoH Crystal Calculator": "html/calc/crystal/index.html",
                 "404": "html/404.html"
             }
         }

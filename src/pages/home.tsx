@@ -26,7 +26,12 @@ const appCardList: AppCardModel[] = [
         Title: "SWGoH Update Frequency",
         Desc: "See how frequently SWGoH updates",
         Link: "/update-frequency",
-    }
+    },
+    {
+        Title: "SWGoH Calculators",
+        Desc: "Various calculators for SWGoH",
+        Link: "/calc",
+    },
 ];
 
 export default function Home() {
