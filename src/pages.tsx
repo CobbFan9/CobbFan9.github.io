@@ -147,7 +147,7 @@ export const Pages: PageDefinition[] = [
 function GenPageMetaTags(desc: string, pageName: string, pagePath: string): React.JSX.Element[] {
     return [
         <meta key="desc" name="description" content={`${SiteShortLink} - ${desc}`} />,
-        <link key="canonical" rel="canonical" href={`${SiteLink}${pagePath}`} />,
+        <link key="canonical" rel="canonical" href={SiteLink} />,
 
         <meta key="og-title" property="og:title" content={`${pageName} - ${SiteShortLink}`} />,
         <meta key="og-desc" property="og:description" content={`${SiteShortLink} - ${desc}`} />,
