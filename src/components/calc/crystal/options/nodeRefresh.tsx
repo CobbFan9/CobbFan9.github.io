@@ -89,6 +89,7 @@ export default function NodeRefresh() {
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Hard Node Refreshes</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>What do your daily node refreshes look like?</p>
+                <p style={{ marginBottom: "0px", marginTop: "5px" }}>Hint: You can put a character name in the first box to keep track. (it saves!)</p>
             </CardHeader>
 
             {hardNodeUnits.map((unit, index) => (
@@ -96,7 +97,7 @@ export default function NodeRefresh() {
                     <div style={{ display: "flex", gap: "10px", width: "100%" }}>
                         <input type="text" value={unit} onChange={(e) => onNodeUnitChange(e, index)} placeholder="Unit" style={{ flex: 1, minWidth: 0 }} className="common-button" />
 
-                        <select id={`nodeRefreshSelector${index + 1}`} value={selectedHardNodeRefreshes[index]} onChange={(e) => onNodeRefreshSelect(e, index)} className="common-button" style={{ flex: 1, minWidth: 0 }}>
+                        <select id={`nodeRefreshSelector${index + 1}`} value={selectedHardNodeRefreshes[index]} onChange={(e) => onNodeRefreshSelect(e, index)} className="common-button truncate-select" style={{ flex: 1, minWidth: 0 }}>
                             <option value="-1">Select Hard Node Refreshes</option>
 
                             {Object.entries(shardRefreshMap).map(([count, price]) => (

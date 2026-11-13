@@ -138,14 +138,14 @@ export default function TBOption() {
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>On average, what do you get from TB?</p>
             </CardHeader>
             <CardRow>
-                <select id="tbSelectorDS" value={selectedDSTB} onChange={(e) => onChangeSelectTB(e, true)} className="common-button" style={{ marginTop: "0px" }}>
+                <select id="tbSelectorDS" value={selectedDSTB} onChange={(e) => onChangeSelectTB(e, true)} className="common-button truncate-select" style={{ marginTop: "0px" }}>
                     <option key="tbSelectorDSDefault" value="0">Select DS TB</option>
                     <option key="tbSelectorDSHoth" value="1">DS Hoth</option>
                     <option key="tbSelectorDSGeo" value="2">DS Geo</option>
                     <option key="tbSelectorDSRote" value="3">RoTE</option>
                 </select>
 
-                <select id="tbStarSelectorDS" value={selectedStarDS} onChange={(e) => onChangeSelectTBStar(e, true)} className="common-button" style={{ marginTop: "3px" }}>
+                <select id="tbStarSelectorDS" value={selectedStarDS} onChange={(e) => onChangeSelectTBStar(e, true)} className="common-button truncate-select" style={{ marginTop: "3px" }}>
                     <option key="tbSelectorDSDefault" value="-1">Select DS TB Star Count</option>
                     {Object.entries(selectedStarMapDS).map(([starCount, payout]) => (
                         <option key={`tbSelectorDS-${starCount}`} value={starCount}>
@@ -154,14 +154,14 @@ export default function TBOption() {
                     ))}
                 </select>
 
-                <select id="tbSelectorLS" value={selectedLSTB} onChange={(e) => onChangeSelectTB(e, false)} className="common-button" style={{ marginTop: "10px" }}>
+                <select id="tbSelectorLS" value={selectedLSTB} onChange={(e) => onChangeSelectTB(e, false)} className="common-button truncate-select" style={{ marginTop: "10px" }}>
                     <option key="tbSelectorLSDefault" value="0">Select LS TB</option>
                     <option key="tbSelectorLSHoth" value="1">LS Hoth</option>
                     <option key="tbSelectorLSGeo" value="2">LS Geo</option>
                     <option key="tbSelectorLSRote" value="3">RoTE</option>
                 </select>
 
-                <select id="tbStarSelectorLS" value={selectedStarLS} onChange={(e) => onChangeSelectTBStar(e, false)} className="common-button" style={{ marginTop: "3px" }}>
+                <select id="tbStarSelectorLS" value={selectedStarLS} onChange={(e) => onChangeSelectTBStar(e, false)} className="common-button truncate-select" style={{ marginTop: "3px" }}>
                     <option key="tbSelectorLSDefault" value="-1">Select LS TB Star Count</option>
                     {Object.entries(selectedStarMapLS).map(([starCount, payout]) => (
                         <option key={`tbSelectorLS-${starCount}`} value={starCount}>

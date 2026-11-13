@@ -65,7 +65,7 @@ export default function Dailies() {
             </CardHeader>
 
             <CardRow>
-                <select id="kesselRunSelector" value={selectedKesselRun} onChange={onKesselRunSelect} className="common-button" style={{ marginTop: "0px" }}>
+                <select id="kesselRunSelector" value={selectedKesselRun} onChange={onKesselRunSelect} className="common-button truncate-select" style={{ marginTop: "0px" }}>
                     <option key="kesselRunSelectorDefault" value="-1">Select Kessel Run Participation</option>
                     <option key="kesselRunSelectorYes" value="0">Yes</option>
                     <option key="kesselRunSelectorNo" value="1">No</option>

@@ -36,7 +36,8 @@ p,
 h1,
 h2,
 h3,
-li {
+li,
+label {
     color: var(--text-dark);
 }
 
@@ -99,4 +100,12 @@ li {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-hover-dark);
+}
+
+.truncate-select {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

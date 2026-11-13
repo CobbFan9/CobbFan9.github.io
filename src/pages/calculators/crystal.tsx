@@ -7,6 +7,10 @@ import TBOption from "../../components/calc/crystal/options/tbOption";
 import Dailies from "../../components/calc/crystal/options/dailies";
 import NodeRefresh from "../../components/calc/crystal/options/nodeRefresh";
 import GacOption from "../../components/calc/crystal/options/gacOption";
+import AbOption from "../../components/calc/crystal/options/abOption";
+import EbOption from "../../components/calc/crystal/options/ebOption";
+import MarqueeOption from "../../components/calc/crystal/options/marquees";
+import EnergyOption from "../../components/calc/crystal/options/energyOption"
 
 import type { CrystalCalcContext } from "../../ts/calc/crystal/context";
 import { useCrystalCalcCtx, CrystalCalcCtx } from "../../ts/calc/crystal/context";
@@ -14,19 +18,29 @@ import { useCrystalCalcCtx, CrystalCalcCtx } from "../../ts/calc/crystal/context
 import LocalStorageManager from "../../ts/calc/crystal/LocalStorageManager";
 
 const calcOptions: React.ComponentType[] = [
+    Dailies,
     GacOption,
-    NodeRefresh,
     FleetOption,
     TBOption,
-    Dailies,
+    AbOption,
+    EbOption,
+
+    MarqueeOption,
+    EnergyOption,
+    NodeRefresh,
 ]
 
 const calcWeights: Record<string, number> = {
-    "FleetOption": 3,
+    "Gac": 0,
     "TBOption": 1,
     "Dailies": 2,
-    "Expenses_NodeRefresh": 0,
-    "Gac": 0
+    "FleetOption": 3,
+    "AB": 4,
+    "EB": 5,
+
+    "Expenses_Marquee": 0,
+    "Expense_Energy": 1,
+    "Expenses_NodeRefresh": 2,
 }
 
 export default function CrystalCalc() {
@@ -111,54 +125,67 @@ function BottomCard() {
 
             setOrderedExplain(sortAndFormat(entries.filter(([key]) => !key.startsWith("Expense_"))));
 
-            setExpenseExplain(sortAndFormat(removePrefix(entries.filter(([key]) => key.startsWith("Expense_")),"Expense_")));
+            setExpenseExplain(sortAndFormat(removePrefix(entries.filter(([key]) => key.startsWith("Expense_")), "Expense_")));
         }
 
         calcCrystalCount();
         genOrder();
     }, [ctx.CrystalsCounted])
 
+    function onClickClearData() {
+        ctx.LocalStorageManager.Clear();
+        window.location.reload();
+    }
+
     return (
-        <Card>
-            <CardHeader>
-                <h2 style={{ marginBottom: "0px", marginTop: "5px" }}>Your Total Crystal Income</h2>
-            </CardHeader>
+        <>
+            <Card>
+                <CardHeader>
+                    <h2 style={{ marginBottom: "0px", marginTop: "5px" }}>Your Total Crystal Income</h2>
+                </CardHeader>
 
-            <CardRow>
-                <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Daily Income</h3>
-                <h2 style={{ marginBottom: "0px", marginTop: "5px" }}>{crystalCount.toLocaleString()} crystals</h2>
-            </CardRow>
+                <CardRow>
+                    <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Daily Income</h3>
+                    <h2 style={{ marginBottom: "0px", marginTop: "5px" }}>{crystalCount.toLocaleString()} crystals</h2>
+                </CardRow>
 
-            <CardRow>
-                <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Monthly Income</h3>
-                <h2 style={{ marginBottom: "0px", marginTop: "5px" }}>{(crystalCount * 28).toLocaleString()} crystals</h2>
-            </CardRow>
+                <CardRow>
+                    <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Monthly Income</h3>
+                    <h2 style={{ marginBottom: "0px", marginTop: "5px" }}>{(crystalCount * 28).toLocaleString()} crystals</h2>
+                </CardRow>
 
-            <CardRow>
-                <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Income (Daily)</h3>
-                <ol style={{ listStylePosition: "inside", paddingLeft: 0 }}>
-                    {Object.entries(orderedExplain).map(([name, crystals]) => (
-                        <li key={`orderedExplain_${name}`} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "12px", textAlign: "left" }}>
-                            <span>{name}</span>
-                            <span style={{ textAlign: "right" }}>
-                                {crystals.toLocaleString()} crystals
-                            </span>
-                        </li>
-                    ))}
-                </ol>
+                <CardRow>
+                    <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Income (Daily)</h3>
+                    <ol style={{ listStylePosition: "inside", paddingLeft: 0 }}>
+                        {Object.entries(orderedExplain).map(([name, crystals]) => (
+                            <li key={`orderedExplain_${name}`} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "12px", textAlign: "left" }}>
+                                <span>{name}</span>
+                                <span style={{ textAlign: "right" }}>
+                                    {crystals.toLocaleString()} crystals
+                                </span>
+                            </li>
+                        ))}
+                    </ol>
 
-                <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Expenses (Daily)</h3>
-                <ol style={{ listStylePosition: "inside", paddingLeft: 0 }}>
-                    {Object.entries(expenseExplain).map(([name, crystals]) => (
-                        <li key={`expenseExplain_${name}`} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "12px", textAlign: "left" }}>
-                            <span>{name}</span>
-                            <span style={{ textAlign: "right" }}>
-                                {crystals.toLocaleString()} crystals
-                            </span>
-                        </li>
-                    ))}
-                </ol>
-            </CardRow>
-        </Card>
+                    <h3 style={{ marginBottom: "0px", marginTop: "5px" }}>Expenses (Daily)</h3>
+                    <ol style={{ listStylePosition: "inside", paddingLeft: 0 }}>
+                        {Object.entries(expenseExplain).map(([name, crystals]) => (
+                            <li key={`expenseExplain_${name}`} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "12px", textAlign: "left" }}>
+                                <span>{name}</span>
+                                <span style={{ textAlign: "right" }}>
+                                    {crystals.toLocaleString()} crystals
+                                </span>
+                            </li>
+                        ))}
+                    </ol>
+                </CardRow>
+            </Card>
+
+            <Card>
+                <CardRow>
+                    <button className="common-button" onClick={() => onClickClearData()}>Clear Data - NOT REVERSIBLE!</button>
+                </CardRow>
+            </Card>
+        </>
     )
 }

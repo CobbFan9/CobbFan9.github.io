@@ -63,7 +63,7 @@ export default function FleetOption() {
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>On average, what is your position in fleet arena?</p>
             </CardHeader>
             <CardRow>
-                <select id="fleetCrystalsSelector" value={selectedFleetPayout} onChange={onFleetCrystalsSelectorChange} className="common-button" style={{ marginTop: "0px" }}>
+                <select id="fleetCrystalsSelector" value={selectedFleetPayout} onChange={onFleetCrystalsSelectorChange} className="common-button truncate-select" style={{ marginTop: "0px" }}>
                     <option key="fleetCrystalsSelectorDefault" value="-1">Select Fleet Payout</option>
                     {Object.entries(fleetPayoutMap).map(([position, payout]) => (
                         <option key={position} value={position}>

@@ -53,10 +53,11 @@ export default function GacOption() {
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Grand Arena</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>What GAC league are you?</p>
+                <p style={{ marginBottom: "0px", marginTop: "5px" }}>Note: your profit is assuming 5 wins 4 losses per month</p>
             </CardHeader>
             <CardRow>
-                <select id="gacLeagueSelector" value={selectedGacLeague} onChange={onGacLeagueSelectorChange} className="common-button" style={{ marginTop: "0px" }}>
-                    <option key="gacLeagueSelectorDefault" value="-1">Select Fleet Payout</option>
+                <select id="gacLeagueSelector" value={selectedGacLeague} onChange={onGacLeagueSelectorChange} className="common-button truncate-select" style={{ marginTop: "0px" }}>
+                    <option key="gacLeagueSelectorDefault" value="-1">Select GAC League</option>
                     {Object.entries(gacLeaguesMap).map(([league, payout]) => (
                         <option key={`gacLeagueSelector_${league}`} value={league}>
                             {`${league} (${Math.floor(payout).toLocaleString()} crystals)`}
