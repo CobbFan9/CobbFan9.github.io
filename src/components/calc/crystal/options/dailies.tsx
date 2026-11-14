@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -58,7 +59,7 @@ export default function Dailies() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Kessel Run">
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Kessel Run</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>Do you usually do kessel run daily?</p>
@@ -71,6 +72,6 @@ export default function Dailies() {
                     <option key="kesselRunSelectorNo" value="1">No</option>
                 </select>
             </CardRow>
-        </Card>
+        </CollapsibleCard>
     )
 }

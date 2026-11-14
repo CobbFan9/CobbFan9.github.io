@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 import type { IEnergyRefresh } from "../../../../ts/calc/crystal/LocalStorageManager"
@@ -63,7 +64,7 @@ export default function EnergyOption() {
     }, [energy, ready]);
 
     return (
-        <Card>
+        <CollapsibleCard title="Energy Refreshes">
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Energy Refreshes</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>How many energy refreshes do you do?</p>
@@ -91,7 +92,7 @@ export default function EnergyOption() {
                     </div>
                 </CardRow>
             ))}
-        </Card>
+        </CollapsibleCard>
     )
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -57,9 +58,9 @@ export default function FleetOption() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Fleet Arena">
             <CardHeader style={{ marginBottom: "5px" }}>
-                <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Fleet Payout</h2>
+                <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Fleet Arena</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>On average, what is your position in fleet arena?</p>
             </CardHeader>
             <CardRow>
@@ -72,6 +73,6 @@ export default function FleetOption() {
                     ))}
                 </select>
             </CardRow>
-        </Card>
+        </CollapsibleCard>
     )
 }

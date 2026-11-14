@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -71,7 +72,7 @@ export default function EbOption() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Era Battles">
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Era Battles</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>What rewards do you get from Era Battles?</p>
@@ -100,7 +101,7 @@ export default function EbOption() {
                     </select>
                 </SelectorSizeSetter>
             </CardRow>
-        </Card>
+        </CollapsibleCard>
     )
 }
 

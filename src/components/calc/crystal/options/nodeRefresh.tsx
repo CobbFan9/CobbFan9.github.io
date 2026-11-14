@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -85,7 +86,7 @@ export default function NodeRefresh() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Hard Node Refreshes">
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Hard Node Refreshes</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>What do your daily node refreshes look like?</p>
@@ -109,6 +110,6 @@ export default function NodeRefresh() {
                     </div>
                 </CardRow>
             ))}
-        </Card>
+        </CollapsibleCard>
     )
 }

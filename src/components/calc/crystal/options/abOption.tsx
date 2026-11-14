@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -71,9 +72,10 @@ export default function AbOption() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Assault Battles">
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Assault Battles</h2>
+                <p style={{ marginBottom: "0px", marginTop: "5px" }}>What rewards do you get from select Assault Battles?</p>
             </CardHeader>
 
             <CardRow>
@@ -99,7 +101,7 @@ export default function AbOption() {
                     </select>
                 </SelectorSizeSetter>
             </CardRow>
-        </Card>
+        </CollapsibleCard>
     )
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -132,7 +133,7 @@ export default function TBOption() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Territory Battles">
             <CardHeader style={{ marginBottom: "0px" }}>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Territory Battles</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>On average, what do you get from TB?</p>
@@ -170,6 +171,6 @@ export default function TBOption() {
                     ))}
                 </select>
             </CardRow>
-        </Card>
+        </CollapsibleCard>
     );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -79,7 +80,7 @@ export default function MarqueeOption() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Marquees">
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Marquees</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>What costs do you have from Marquees?</p>
@@ -111,6 +112,6 @@ export default function MarqueeOption() {
                     <option key="epSelectorYes" value="0">Yes</option>
                 </select>
             </CardRow>
-        </Card>
+        </CollapsibleCard>
     )
 }

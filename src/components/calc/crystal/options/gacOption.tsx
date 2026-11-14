@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardRow, CardHeader } from "../page"
+import { CardRow, CardHeader } from "../page"
+import { CollapsibleCard } from "../collapsibleCard";
 
 import { useCrystalCalcCtx } from "../../../../ts/calc/crystal/context";
 
@@ -49,7 +50,7 @@ export default function GacOption() {
     }
 
     return (
-        <Card>
+        <CollapsibleCard title="Grand Arena">
             <CardHeader>
                 <h2 style={{ marginBottom: "0px", marginTop: "0px" }}>Grand Arena</h2>
                 <p style={{ marginBottom: "0px", marginTop: "5px" }}>What GAC league are you?</p>
@@ -65,6 +66,6 @@ export default function GacOption() {
                     ))}
                 </select>
             </CardRow>
-        </Card>
+        </CollapsibleCard>
     )
 }

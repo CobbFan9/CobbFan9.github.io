@@ -33,14 +33,14 @@ const calcOptions: React.ComponentType[] = [
 const calcWeights: Record<string, number> = {
     "Gac": 0,
     "TBOption": 1,
-    "Dailies": 2,
-    "FleetOption": 3,
-    "AB": 4,
-    "EB": 5,
+    "FleetOption": 2,
+    "AB": 3,
+    "EB": 4,
+    "Dailies": 5,
 
-    "Expenses_Marquee": 0,
+    "Expense_Marquee": 0,
     "Expense_Energy": 1,
-    "Expenses_NodeRefresh": 2,
+    "Expense_NodeRefresh": 2,
 }
 
 export default function CrystalCalc() {
@@ -100,17 +100,24 @@ function BottomCard() {
         }
 
         function genOrder() {
-            function sortAndFormat(entries: [string, number][]) {
+            function sortAndFormat(entries: [string, number][], weightPrefix = "") {
                 return Object.fromEntries(
                     entries
                         .sort(([keyA], [keyB]) => {
                             const getWeight = (key: string) => {
-                                const prefix = Object.keys(calcWeights).find(k =>
-                                    key.startsWith(`${k}_`)
-                                );
-                                return prefix !== undefined ? calcWeights[prefix] : Infinity;
-                            };
+                                const fullKey = weightPrefix + key;
 
+                                const prefix = Object.keys(calcWeights).find(k =>
+                                    fullKey.startsWith(k)
+                                );
+
+                                if (prefix === undefined) {
+                                    console.warn(`No weight configured for key: "${fullKey}"`);
+                                    return Infinity;
+                                }
+
+                                return calcWeights[prefix];
+                            };
                             return getWeight(keyA) - getWeight(keyB);
                         })
                         .map(([key, value]) => [key.replace(/^[^_]+_/, ""), value])
@@ -125,7 +132,7 @@ function BottomCard() {
 
             setOrderedExplain(sortAndFormat(entries.filter(([key]) => !key.startsWith("Expense_"))));
 
-            setExpenseExplain(sortAndFormat(removePrefix(entries.filter(([key]) => key.startsWith("Expense_")), "Expense_")));
+            setExpenseExplain(sortAndFormat(removePrefix(entries.filter(([key]) => key.startsWith("Expense_")), "Expense_"), "Expense_"));
         }
 
         calcCrystalCount();
