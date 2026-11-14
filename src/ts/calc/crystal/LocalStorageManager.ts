@@ -14,6 +14,7 @@ export interface ICalcSaveData {
     Marquee_EPass?: string;
     Marquee_Stars?: string;
     EnergyRefresh?: IEnergyRefresh;
+    CollapseCardClosed?: Record<string, boolean>;
 }
 
 export interface IEnergyRefresh {

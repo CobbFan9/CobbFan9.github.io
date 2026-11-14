@@ -5,6 +5,8 @@ import styled from "styled-components";
 
 import { Card } from "./page";
 
+import { useCrystalCalcCtx } from "../../../ts/calc/crystal/context";
+
 interface CollapsibleCardProps {
     title: string;
     children: ReactNode;
@@ -12,15 +14,33 @@ interface CollapsibleCardProps {
 }
 
 export function CollapsibleCard({ title, children, defaultExpanded = true }: CollapsibleCardProps) {
-    const [expanded, setExpanded] = useState(defaultExpanded);
+    const ctx = useCrystalCalcCtx();
+
     const contentId = useId();
 
+    const [expanded, setExpanded] = useState(() => {
+        const savedClosed = ctx.LocalStorageManager.data.CollapseCardClosed?.[title];
+
+        return savedClosed !== undefined ? !savedClosed : defaultExpanded;
+    });
+
+    const toggleExpanded = () => {
+        const newExpanded = !expanded;
+
+        setExpanded(newExpanded);
+
+        ctx.LocalStorageManager.data.CollapseCardClosed ??= {};
+        ctx.LocalStorageManager.data.CollapseCardClosed[title] = !newExpanded;
+
+        ctx.LocalStorageManager.SaveSession();
+    };
+
     return (
-        <Card>
-            <CollapsibleCardHeader>
+        <Card style={{ paddingTop: "8px", paddingBottom: "10px"}}>
+            <CollapsibleCardHeader style={{ marginTop: "6px" }}>
                 <CollapseButton
                     $expanded={expanded}
-                    onClick={() => setExpanded(!expanded)}
+                    onClick={toggleExpanded}
                     aria-expanded={expanded}
                     aria-controls={contentId}
                     aria-label={expanded ? "Collapse card" : "Expand card"}
@@ -41,8 +61,6 @@ export function CollapsibleCard({ title, children, defaultExpanded = true }: Col
         </Card>
     );
 }
-
-
 
 export const CollapsibleCardHeader = styled.div`
     display: flex;
