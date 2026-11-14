@@ -3,6 +3,12 @@ server {
     listen 8080;
     server_name _;
 
+    location = / {
+        access_log off;
+        default_type text/plain;
+        return 200 "OK";
+    }
+
     location = /health {
         access_log off;
         default_type text/plain;
