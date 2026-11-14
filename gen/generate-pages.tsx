@@ -130,13 +130,16 @@ import react from '@vitejs/plugin-react'
 import moveHtmlPlugin from "./vite/moveHtmlPlugin.js";
 //@ts-ignore
 import devHtmlPlugin from "./vite/devHtmlPlugin.js";
+//@ts-ignore
+import authPlugin from "./vite/authPlugin.js
 
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
         react(),
         moveHtmlPlugin(),
-        devHtmlPlugin()
+        devHtmlPlugin(),
+        authPlugin()
     ],
     build: {
         rollupOptions: {

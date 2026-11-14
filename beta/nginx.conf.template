@@ -1,0 +1,47 @@
+
+server {
+    listen 8080;
+    server_name _;
+
+    location = /health {
+        access_log off;
+        default_type text/plain;
+        return 200 "OK";
+    }
+
+    location /assets/ {
+        auth_request /_auth;
+
+        root /var/www;
+
+        autoindex off;
+
+        add_header Cache-Control "private, no-store" always;
+
+        limit_except GET HEAD {
+            deny all;
+        }
+    }
+
+    location = /_auth {
+        internal;
+
+        proxy_pass ${WORKER_URL}/verify;
+
+        proxy_pass_request_body off;
+        proxy_set_header Content-Length "";
+
+        proxy_set_header X-Auth-Token $cookie_auth_token;
+
+        proxy_set_header X-Nginx-Secret "${NGINX_SECRET}";
+
+        proxy_set_header X-Original-URI $uri;
+
+        proxy_set_header Host $proxy_host;
+
+        proxy_ssl_server_name on;
+
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 10s;
+    }
+}
