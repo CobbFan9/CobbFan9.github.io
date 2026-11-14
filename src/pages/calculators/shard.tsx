@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Card, CardRow, CardHeader, CardDescription, Page } from "../../components/calc/shard/page"
 

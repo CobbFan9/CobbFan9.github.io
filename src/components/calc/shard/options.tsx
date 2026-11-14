@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { Card, CardRow, CardHeader } from "./page";
+import { Card, CardRow } from "./page";
 
 interface OptionsProps {
     setTimeTo7: React.Dispatch<React.SetStateAction<number>>;
