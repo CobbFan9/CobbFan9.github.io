@@ -11,6 +11,7 @@ const UpdateFreqPage = lazy(() => import("./pages/update-freq"));
 const NotFound = lazy(() => import("./pages/not-found"));
 const Calculators = lazy(() => import("./pages/calculators"));
 const CrystalCalc = lazy(() => import("./pages/calculators/crystal"));
+const ShardCalc = lazy(() => import("./pages/calculators/shard"));
 
 export type PageDefinition = {
     PageName: string;
@@ -148,6 +149,17 @@ export const Pages: PageDefinition[] = [
         PageMetaTags: [
             ...defaultMeta,
             ...GenPageMetaTags("Star Wars: Galaxy of Heroes Crystal Calculator", "SWGoH Crystal Calculator", "/calc/crystal"),
+        ],
+    },
+    {
+        PageName: "SWGoH Shard Calculator",
+        PageTitle: `SWGoH Shard Calculator - ${SiteShortLink}`,
+        PageElement: ShardCalc,
+        PageMainPath: "/calc/shard",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("Star Wars: Galaxy of Heroes Shard Calculator", "SWGoH Shard Calculator", "/calc/shard"),
         ],
     },
     {
