@@ -15,6 +15,13 @@ server {
         add_header Cache-Control "no-store" always;
     }
 
+    location ^~ /assets/assets/ {
+        auth_request off;
+        root /var/www;
+        autoindex off;
+        add_header Cache-Control "no-store" always;
+    }
+
     location /assets/ {
         auth_request /_auth;
 

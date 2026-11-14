@@ -6,7 +6,7 @@ import moveHtmlPlugin from "./vite/moveHtmlPlugin.js";
 //@ts-ignore
 import devHtmlPlugin from "./vite/devHtmlPlugin.js";
 //@ts-ignore
-import authPlugin from "./vite/authPlugin.js
+import authPlugin from "./vite/authPlugin.js";
 
 // https://vite.dev/config/
 export default defineConfig({
