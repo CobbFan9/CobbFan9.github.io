@@ -16,8 +16,6 @@ RUN rm -f /etc/nginx/conf.d/default.conf
 
 COPY nginx.conf.template /etc/nginx/templates/nginx.conf.template
 
-COPY assets/ /var/www/assets/
-
 EXPOSE 8080
 
 ENV WORKER_URL=""
