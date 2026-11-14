@@ -7,6 +7,11 @@ export default function authPlugin() {
         apply: "build",
 
         closeBundle() {
+            if (process.env.WORKER_URL) {
+                console.log("[authPlugin] WORKER_URL is set. Keeping dist/auth");
+                return;
+            }
+            
             const authDir = path.resolve("dist/auth");
 
             fs.rmSync(authDir, {
