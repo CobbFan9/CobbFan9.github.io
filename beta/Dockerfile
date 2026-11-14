@@ -2,6 +2,8 @@ FROM node:26-alpine AS builder
 
 WORKDIR /app
 
+ENV WORKER_URL="DOES NOT MATTER YET"
+
 COPY package*.json ./
 RUN npm ci
 
