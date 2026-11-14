@@ -9,6 +9,7 @@ const Terms = lazy(() => import("./pages/terms"));
 const AssetExtractorWeb = lazy(() => import("./pages/asset-extractor-web"));
 const UpdateFreqPage = lazy(() => import("./pages/update-freq"));
 const NotFound = lazy(() => import("./pages/not-found"));
+const AuthLogin = lazy(() => import("./pages/auth"));
 
 export type PageDefinition = {
     PageName: string;
@@ -140,6 +141,17 @@ export const Pages: PageDefinition[] = [
             <meta key="og-title" property="og:title" content={`Page Not Found — ${SiteShortLink}`} />,
             <meta key="og-prop" property="og:description" content="The page you're looking for could not be found." />,
             <meta key="og-type" property="og:type" content="website" />,
+        ],
+    },
+    {
+        PageName: "Auth",
+        PageTitle: `Auth - ${SiteShortLink}`,
+        PageElement: AuthLogin,
+        PageMainPath: "/auth/login",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            <meta key="charset" charSet="UTF-8" />,
+            <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1" />,
         ],
     },
 ] as const;

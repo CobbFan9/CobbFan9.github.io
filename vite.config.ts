@@ -5,13 +5,16 @@ import react from '@vitejs/plugin-react'
 import moveHtmlPlugin from "./vite/moveHtmlPlugin.js";
 //@ts-ignore
 import devHtmlPlugin from "./vite/devHtmlPlugin.js";
+//@ts-ignore
+import authPlugin from "./vite/authPlugin.js
 
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
         react(),
         moveHtmlPlugin(),
-        devHtmlPlugin()
+        devHtmlPlugin(),
+        authPlugin()
     ],
     build: {
         rollupOptions: {
@@ -24,7 +27,8 @@ export default defineConfig({
                 "Terms": "html/terms/index.html",
                 "Asset Extractor Web": "html/asset-extractor-web/index.html",
                 "Update Frequency": "html/update-frequency/index.html",
-                "404": "html/404.html"
+                "404": "html/404.html",
+                "Auth": "html/auth/login/index.html"
             }
         }
     }
