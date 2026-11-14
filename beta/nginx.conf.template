@@ -15,8 +15,8 @@ server {
         return 200 "OK";
     }
 
-    location = /assets/auth/login/index.html {
-        root /var/www;
+    location = /auth/login/index.html {
+        alias /var/www/dist/auth/login/index.html;
         auth_request off;
         add_header Cache-Control "no-store" always;
     }
@@ -31,7 +31,7 @@ server {
     location /assets/ {
         auth_request /_auth;
 
-        root /var/www;
+        root /var/www/dist;
 
         autoindex off;
 
