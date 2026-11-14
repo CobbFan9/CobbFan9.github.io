@@ -14,7 +14,7 @@ RUN apk add --no-cache gettext
 
 RUN rm -f /etc/nginx/conf.d/default.conf
 
-COPY nginx.conf.template /etc/nginx/templates/nginx.conf.template
+COPY ./beta/nginx.conf.template /etc/nginx/templates/nginx.conf.template
 
 EXPOSE 8080
 
