@@ -15,7 +15,7 @@ server {
         return 200 "OK";
     }
 
-    location = /auth/login/index.html {
+    location = /auth/login {
         alias /var/www/dist/auth/login/index.html;
         auth_request off;
         add_header Cache-Control "no-store" always;
