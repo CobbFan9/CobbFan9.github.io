@@ -52,29 +52,41 @@ export default function PortraitMaker() {
     };
 
     const renderToCanvas = async () => {
-        console.log("Got render ready");
-
         if (!ctx.renderRef.current || !ctx.canvasRef.current || !ctx.canvasCtxRef.current) return;
-        console.log("Doing render");
 
-        const param = {
+        await document.fonts.ready;
+
+        const png = await toPng(ctx.renderRef.current, {
             cacheBust: true,
-        }
+            pixelRatio: 3,
+        });
 
-        const png = await toPng(ctx.renderRef.current, param);
-        console.log(png);
+        console.log("Render dimensions:",
+            ctx.renderRef.current.getBoundingClientRect().width,
+            ctx.renderRef.current.getBoundingClientRect().height
+        );
 
         const img = new Image();
         img.src = png;
 
-        await new Promise(resolve => (img.onload = resolve));
+        await new Promise<void>((resolve, reject) => {
+            img.onload = () => resolve();
+            img.onerror = () => reject(new Error("Failed to load rendered image"));
+        });
+
+        console.log("PNG dimensions:", img.width, img.height);
 
         ctx.canvasRef.current.width = img.width;
         ctx.canvasRef.current.height = img.height;
 
-        ctx.canvasCtxRef.current.clearRect(0, 0, ctx.canvasRef.current.width, ctx.canvasRef.current.height);
+        ctx.canvasCtxRef.current.clearRect(
+            0,
+            0,
+            ctx.canvasRef.current.width,
+            ctx.canvasRef.current.height
+        );
+
         ctx.canvasCtxRef.current.drawImage(img, 0, 0);
-        console.log("Finished render")
     };
 
     const notifyReady = () => {

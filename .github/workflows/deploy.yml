@@ -26,6 +26,20 @@ jobs:
         with:
           node-version: 26
 
+      - uses: pnpm/setup@v1
+        with:
+          version: 10
+          runtime: node@26
+          cache: true
+
+      - name: Install dependencies
+        working-directory: ./vendor/html-to-image
+        run: pnpm install
+
+      - name: Build
+        working-directory: ./vendor/html-to-image
+        run: npm run build
+
       - name: Install dependencies
         run: npm ci
 

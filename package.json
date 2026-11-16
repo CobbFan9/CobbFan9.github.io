@@ -16,7 +16,7 @@
     "chart.js": "^4.5.1",
     "chartjs-chart-matrix": "^3.1.0",
     "diff": "^9.0.0",
-    "html-to-image": "^1.11.13",
+    "html-to-image": "file:vendor/html-to-image",
     "prettier": "^3.9.10",
     "react": "^19.3.1",
     "react-chartjs-2": "^5.3.1",
@@ -38,7 +38,8 @@
     "vite": "^8.3.4"
   },
   "allowScripts": {
-    "esbuild@0.28.2": true
+    "esbuild@0.28.2": true,
+    "file:../vendor/html-to-image": false
   },
   "engines": {
     "node": "v26.x"
