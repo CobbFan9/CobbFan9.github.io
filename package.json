@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run prepBuild && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate": "tsx gen/generate-pages.tsx"
+    "generate": "tsx gen/generate-pages.tsx",
+    "prepBuild": "cd vendor/html-to-image && npm run build"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.16.0",
