@@ -136,7 +136,7 @@ export default defineConfig({
     plugins: [
         react(),
         moveHtmlPlugin(),
-        devHtmlPlugin()
+        devHtmlPlugin(),
     ],
     build: {
         rollupOptions: {
