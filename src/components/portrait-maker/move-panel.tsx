@@ -37,10 +37,10 @@ export default function MovePanel() {
                     <ZoomItem className="common-button" onClick={() => changeZoom(-5)}>Out</ZoomItem>
                 </ZoomContainer>
                 <GridContainer>
-                    <GridItem id="upButton" className="common-button" onClick={() => changeY(-3)}>Up</GridItem>
-                    <GridItem id="downButton" className="common-button" onClick={() => changeY(3)}>Down</GridItem>
-                    <GridItem id="leftButton" className="common-button" onClick={() => changeX(-3)}>Left</GridItem>
-                    <GridItem id="rightButton" className="common-button" onClick={() => changeX(3)}>Right</GridItem>
+                    <GridItem id="upButton" className="common-button" onClick={() => changeY(-5)}>Up</GridItem>
+                    <GridItem id="downButton" className="common-button" onClick={() => changeY(5)}>Down</GridItem>
+                    <GridItem id="leftButton" className="common-button" onClick={() => changeX(5)}>Left</GridItem>
+                    <GridItem id="rightButton" className="common-button" onClick={() => changeX(-5)}>Right</GridItem>
                 </GridContainer>
                 <Reset className="common-button" onClick={() => reset()}>Reset</Reset>
             </CardRow>

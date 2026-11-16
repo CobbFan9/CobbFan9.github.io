@@ -191,16 +191,9 @@ function Stars() {
 }
 
 const CollectionChar = styled.div`
-    font-family: 'TradeGothic', sans-serif;
-
-    * {
-        font-family: inherit;
-    }
-
     position: relative;
-    min-height: 143px;
-    height: auto;
-    box-sizing: border-box;
+    height: 110px;
+    padding: 10px 0;
 
     &:after,
     &:before {
@@ -270,7 +263,7 @@ const CharacterPortrait__Zeta = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: 50% transparent url(/portraitMakerImages/tex.skill_zeta_glow.png) no-repeat;
+    background: 50% transparent url(/portraitMakerImages/zeta.png) no-repeat;
     background-size: contain;
     width: 38px;
     height: 38px;
@@ -280,22 +273,16 @@ const CharacterPortrait__Zeta = styled.div`
     left: -10px;
     color: #fff;
     text-align: center;
-    padding-bottom: 2px;
     font-size: 12px;
     font-weight: 700;
-    text-shadow:
-        -1px  0   0 #7028c9,
-         1px  0   0 #7028c9,
-         0   -1px 0 #7028c9,
-         0    1px 0 #7028c9,
-         0    2px 1px rgba(0, 0, 0, 0.75);
+    text-shadow: -1px -1px 0 #7028c9, 2px -1px 0 #7028c9, 2px 2px 0 #7028c9, -1px 2px 0 #7028c9, 2px 3px 0 #7028c9, 1px 3px 0 #7028c9, 2px 3px 0 #7028c9;
 `;
 
 const CharacterPortrait__Omi = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: 50% transparent url(/portraitMakerImages/tex.skill_omicron.png) no-repeat;
+    background: 50% transparent url(/portraitMakerImages/omi.png) no-repeat;
     background-size: contain;
     width: 38px;
     height: 38px;
@@ -305,56 +292,29 @@ const CharacterPortrait__Omi = styled.div`
     right: -10px;
     color: #fff;
     text-align: center;
-    padding-bottom: 2px;
     font-size: 12px;
     font-weight: 700;
-    text-shadow:
-        -1px  0   0 #000,
-         1px  0   0 #000,
-         0   -1px 0 #000,
-         0    1px 0 #000,
-         0    2px 1px rgba(0, 0, 0, 0.8);
+    text-shadow: -1px -1px 0 #000, 2px -1px 0 #000, 2px 2px 0 #000, -1px 2px 0 #000;
 `;
 
 const CharacterPortrait__RelicBadge = styled.div<{ $image: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-image: url(${({ $image }) => $image});
     background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    box-sizing: border-box;
     width: 44px;
     height: 44px;
-    padding: 0;
-
     position: absolute;
     top: 48px;
     left: 50%;
-
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     z-index: 4;
-
-    white-space: nowrap;
-    flex-shrink: 0;
-
     color: #fff;
     text-align: center;
     font-weight: 700;
-    line-height: 1;
-
-    text-shadow:
-        -1px -1px 0 #000,
-        0px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px  0px 0 #000,
-        1px  0px 0 #000,
-        -1px  1px 0 #000,
-        0px  1px 0 #000,
-        1px  1px 0 #000;
+    text-shadow: -1px -1px 0 #000, 2px -1px 0 #000, 2px 2px 0 #000, -1px 2px 0 #000;
 `;
 
 const CharacterPortrait__RFrame = styled.div<{ $image: string }>`

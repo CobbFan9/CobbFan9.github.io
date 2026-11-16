@@ -11,12 +11,9 @@ export default defineConfig({
     plugins: [
         react(),
         moveHtmlPlugin(),
-        devHtmlPlugin(),
+        devHtmlPlugin()
     ],
     build: {
-        cssMinify: 'esbuild',
-        outDir: "dist",
-        emptyOutDir: true,
         rollupOptions: {
             input: {
                 "Home": "html/index.html",
