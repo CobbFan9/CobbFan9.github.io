@@ -17,6 +17,9 @@ export default defineConfig({
         devGenPlugin()
     ],
     build: {
+        cssMinify: 'esbuild',
+        outDir: "dist",
+        emptyOutDir: true,
         rollupOptions: {
             input: {
                 "Home": "html/index.html",

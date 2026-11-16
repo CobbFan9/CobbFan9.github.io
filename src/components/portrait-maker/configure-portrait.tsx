@@ -78,9 +78,10 @@ const InputGroup = styled.div`
 
 const InputContainer = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px 30px;
     color: var(--text-dark);
 `;
 
