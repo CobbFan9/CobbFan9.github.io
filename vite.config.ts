@@ -14,7 +14,6 @@ export default defineConfig({
         react(),
         moveHtmlPlugin(),
         devHtmlPlugin(),
-        authPlugin()
     ],
     build: {
         rollupOptions: {
