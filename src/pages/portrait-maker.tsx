@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import { toPng } from "html-to-image";
+import { createRenderer } from 'html-to-image'
 
 import type { PortraitMakerContext } from "../ts/portrait-maker/context";
 import { PortraitMakerCtx, usePortraitMakerCtx } from "../ts/portrait-maker/context"
@@ -35,6 +35,8 @@ export default function PortraitMaker() {
     const [renderContent, setRenderContent] = useState<SwgohPortraitOpts | null>(null);
     const [versionRef, setVersionRef] = useState<number>(0);
 
+    const renderer = useRef(createRenderer({ pixelRatio: 4, skipFonts: false }));
+
     const diffListeners = useRef(new Set<() => void>());
     const subscribe = (cb: () => void) => {
         diffListeners.current.add(cb);
@@ -56,15 +58,10 @@ export default function PortraitMaker() {
 
         await document.fonts.ready;
 
-        const png = await toPng(ctx.renderRef.current, {
+        const png = await renderer.current.toPng(ctx.renderRef.current, {
             cacheBust: true,
-            pixelRatio: 3,
+            quality: 1,
         });
-
-        console.log("Render dimensions:",
-            ctx.renderRef.current.getBoundingClientRect().width,
-            ctx.renderRef.current.getBoundingClientRect().height
-        );
 
         const img = new Image();
         img.src = png;
@@ -73,8 +70,6 @@ export default function PortraitMaker() {
             img.onload = () => resolve();
             img.onerror = () => reject(new Error("Failed to load rendered image"));
         });
-
-        console.log("PNG dimensions:", img.width, img.height);
 
         ctx.canvasRef.current.width = img.width;
         ctx.canvasRef.current.height = img.height;
