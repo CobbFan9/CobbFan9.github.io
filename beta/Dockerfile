@@ -17,6 +17,6 @@ COPY ./beta/nginx.conf /etc/nginx/templates/nginx.conf
 
 COPY --from=builder /app/dist/ /var/www/dist/
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
