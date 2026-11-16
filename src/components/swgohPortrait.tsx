@@ -191,14 +191,6 @@ function Stars() {
 }
 
 const CollectionChar = styled.div`
-    @font-face {
-        font-family: 'TradeGothic';
-        src: url('/portraitMakerImages/TradeGothicLTCom-BdCn20.ttf') format('truetype');
-        font-weight: bold;
-        font-style: normal;
-        font-display: swap;
-    }
-
     font-family: 'TradeGothic', sans-serif;
 
     * {
