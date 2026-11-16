@@ -40,6 +40,15 @@ body {
     background-color: var(--background-color-dark);
 }
 
+p,
+h1,
+h2,
+h3,
+li,
+label {
+    color: var(--text-dark);
+}
+
 .common-button {
     display: inline-block;
     cursor: pointer;
@@ -99,4 +108,12 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-hover-dark);
+}
+
+.truncate-select {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
