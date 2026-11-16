@@ -23,7 +23,6 @@ jobs:
       - uses: pnpm/setup@v1
         with:
           version: 10
-          cache: true
 
       - name: Install dependencies
         working-directory: ./vendor/html-to-image
@@ -68,7 +67,6 @@ jobs:
       - uses: pnpm/setup@v1
         with:
           version: 10
-          cache: true
 
       - name: Install dependencies
         working-directory: ./vendor/html-to-image
