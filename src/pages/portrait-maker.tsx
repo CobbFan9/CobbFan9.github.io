@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import { toPng } from "html-to-image";
+import { createRenderer } from 'html-to-image'
 
 import type { PortraitMakerContext } from "../ts/portrait-maker/context";
 import { PortraitMakerCtx, usePortraitMakerCtx } from "../ts/portrait-maker/context"
@@ -35,6 +35,8 @@ export default function PortraitMaker() {
     const [renderContent, setRenderContent] = useState<SwgohPortraitOpts | null>(null);
     const [versionRef, setVersionRef] = useState<number>(0);
 
+    const renderer = useRef(createRenderer({ pixelRatio: 4, skipFonts: false }));
+
     const diffListeners = useRef(new Set<() => void>());
     const subscribe = (cb: () => void) => {
         diffListeners.current.add(cb);
@@ -52,29 +54,34 @@ export default function PortraitMaker() {
     };
 
     const renderToCanvas = async () => {
-        console.log("Got render ready");
-
         if (!ctx.renderRef.current || !ctx.canvasRef.current || !ctx.canvasCtxRef.current) return;
-        console.log("Doing render");
 
-        const param = {
+        await document.fonts.ready;
+
+        const png = await renderer.current.toPng(ctx.renderRef.current, {
             cacheBust: true,
-        }
-
-        const png = await toPng(ctx.renderRef.current, param);
-        console.log(png);
+            quality: 1,
+        });
 
         const img = new Image();
         img.src = png;
 
-        await new Promise(resolve => (img.onload = resolve));
+        await new Promise<void>((resolve, reject) => {
+            img.onload = () => resolve();
+            img.onerror = () => reject(new Error("Failed to load rendered image"));
+        });
 
         ctx.canvasRef.current.width = img.width;
         ctx.canvasRef.current.height = img.height;
 
-        ctx.canvasCtxRef.current.clearRect(0, 0, ctx.canvasRef.current.width, ctx.canvasRef.current.height);
+        ctx.canvasCtxRef.current.clearRect(
+            0,
+            0,
+            ctx.canvasRef.current.width,
+            ctx.canvasRef.current.height
+        );
+
         ctx.canvasCtxRef.current.drawImage(img, 0, 0);
-        console.log("Finished render")
     };
 
     const notifyReady = () => {

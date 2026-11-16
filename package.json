@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run prepBuild && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate": "tsx gen/generate-pages.tsx"
+    "generate": "tsx gen/generate-pages.tsx",
+    "prepBuild": "cd vendor/html-to-image && npm run build && cd ../.."
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.16.0",
@@ -16,11 +17,11 @@
     "chart.js": "^4.5.1",
     "chartjs-chart-matrix": "^3.1.0",
     "diff": "^9.0.0",
-    "html-to-image": "^1.11.13",
+    "html-to-image": "file:vendor/html-to-image",
     "prettier": "^3.9.10",
-    "react": "^19.3.0",
+    "react": "^19.3.1",
     "react-chartjs-2": "^5.3.1",
-    "react-dom": "^19.3.0",
+    "react-dom": "^19.3.1",
     "styled-components": "^6.5.3"
   },
   "devDependencies": {
@@ -29,7 +30,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
-    "eslint": "^10.12.0",
+    "eslint": "^10.13.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.13.0",
@@ -38,7 +39,8 @@
     "vite": "^8.3.4"
   },
   "allowScripts": {
-    "esbuild@0.28.2": true
+    "esbuild@0.28.2": true,
+    "file:../vendor/html-to-image": false
   },
   "engines": {
     "node": "v26.x"
