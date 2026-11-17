@@ -108,7 +108,7 @@ const UpdatesPage = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 7px;
 `;
 
 const UpdatesCard = styled.div`
