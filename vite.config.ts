@@ -7,6 +7,8 @@ import moveHtmlPlugin from "./vite/moveHtmlPlugin.js";
 import devHtmlPlugin from "./vite/devHtmlPlugin.js";
 //@ts-ignore
 import devGenPlugin from "./vite/devGenPlugin.js";
+//@ts-ignore
+import commitHashPlugin from "./vite/commitHashPlugin.ts";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,7 +16,8 @@ export default defineConfig({
         react(),
         moveHtmlPlugin(),
         devHtmlPlugin(),
-        devGenPlugin()
+        devGenPlugin(),
+        commitHashPlugin(),
     ],
     build: {
         cssMinify: 'esbuild',
