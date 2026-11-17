@@ -33,6 +33,7 @@ export default defineConfig({
                 "SWGoH Calculators": "html/calc/index.html",
                 "SWGoH Crystal Calculator": "html/calc/crystal/index.html",
                 "SWGoH Shard Calculator": "html/calc/shard/index.html",
+                "AI Use Policy": "html/ai-use-policy/index.html",
                 "404": "html/404.html"
             }
         }
