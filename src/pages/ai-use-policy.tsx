@@ -54,7 +54,9 @@ export default function AiUsePolicy() {
                         <br />
                         <br />
                         Now a hot take, if you don't know how to code, you shouldn't vibe code. I'm positive it could be argued, but it is what I firmly belive.
-                        The reason I think this, is because of how often it is sooo close to right but not.
+                        The reason I think this, is because of how often it is sooo close to right but not. When it gets to application security? Yea no thanks get someone who knows what they can do.
+                        Another issue with vibe coding is that there is a community for what you are tring to do. Let them do what they want to do, which is make tools for you.
+                        I see people make games and libraries and such with AI based on another, but the original app devs had the idea and want to provide it, let them do what they love!
                     </p>
                 </CardRow>
             </Card>
