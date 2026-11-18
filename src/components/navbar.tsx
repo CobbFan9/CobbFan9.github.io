@@ -3,7 +3,13 @@ import styled from "styled-components";
 import Link from "./link";
 import ThemeSelector from "./themeSelect";
 
-const links = [
+type navLink = {
+    href: string;
+    text: string;
+    isBack?: boolean;
+}
+
+const links: navLink[] = [
     { href: "#", text: "Back", isBack: true },
     { href: "/", text: "Home" },
     { href: "/swgoh-portrait-maker", text: "SWGoH Portrait Maker" },
@@ -27,7 +33,9 @@ export default function NavBar() {
     return (
         <Nav>
             <NavContainer>
-                <Logo>CobbFan9's Tools</Logo>
+                <Logo to="/" onClick={closeMenu}>
+                    CobbFan9's Tools
+                </Logo>
 
                 <MenuToggle aria-label="Toggle menu" onClick={() => setMenuOpen((prev) => !prev)}>
                     {menuOpen ? "✕" : "☰"}
@@ -70,10 +78,16 @@ const NavContainer = styled.div`
     margin: 0 auto;
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
     font-weight: bold;
     color: var(--text-dark);
     font-size: 1.2em;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
 `;
 
 const MenuToggle = styled.button`
