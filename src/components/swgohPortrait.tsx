@@ -25,9 +25,6 @@ export enum Alignment {
 }
 
 export default function SwgohPortrait({ opts, onReady }: SwgohPortraitPrefs) {
-    console.log("Logging opts");
-    console.log(opts);
-
     useEffect(() => {
         console.log("Calling onReady");
         onReady?.();
@@ -198,7 +195,7 @@ const CollectionChar = styled.div`
     }
 
     position: relative;
-    min-height: 143px;
+    min-height: 132px;
     height: auto;
     box-sizing: border-box;
 
@@ -320,6 +317,9 @@ const CharacterPortrait__RelicBadge = styled.div<{ $image: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    contain: layout;
+    overflow: hidden;
 
     background-image: url(${({ $image }) => $image});
     background-size: 100%;
