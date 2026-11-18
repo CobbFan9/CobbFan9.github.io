@@ -10,10 +10,7 @@ WORKDIR /app
 
 ENV APP_ENV="beta"
 
-COPY package.json pnpm-lock.yaml ./
-COPY pnpm-workspace.yaml ./
-COPY vendor/html-to-image ./vendor/html-to-image
-
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 COPY . .
