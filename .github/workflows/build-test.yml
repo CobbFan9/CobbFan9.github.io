@@ -27,14 +27,6 @@ jobs:
           cache: true
           install: false
 
-      - name: Install vendored dependency
-        working-directory: ./vendor/html-to-image
-        run: pnpm install --frozen-lockfile
-
-      - name: Build vendored dependency
-        working-directory: ./vendor/html-to-image
-        run: pnpm run build
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       
@@ -73,14 +65,6 @@ jobs:
           version: 12.21.0
           cache: true
           install: false
-
-      - name: Install vendored dependency
-        working-directory: ./vendor/html-to-image
-        run: pnpm install --frozen-lockfile
-
-      - name: Build vendored dependency
-        working-directory: ./vendor/html-to-image
-        run: pnpm run build
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
