@@ -11,25 +11,22 @@ export default function Export() {
     const [displayMobileExport, setDisplayMobileExport] = useState(false);
     const [mobileExportLink, setMobileExportLink] = useState("");
 
-    function genImage(): string | null {
-        const canvas = ctx.canvasRef.current;
-        if (!canvas) return null;
-
-        return canvas.toDataURL("image/webp", 0.9);
+    async function genImage(): Promise<string | null> {
+        return await pngToWebp(await ctx.renderHighQuality());
     }
 
-    function exportPC() {
-        const imgUrl = genImage()
+    async function exportPC() {
+        const imgUrl = await genImage();
         if (!imgUrl) return;
 
         const a = document.createElement("a");
         a.href = imgUrl;
-        a.download = "swgoh-portrait-maker.webp";
+        a.download = "swgoh-portrait-maker.png";
         a.click();
     }
 
-    function exportMobile() {
-        const imgUrl = genImage()
+    async function exportMobile() {
+        const imgUrl = await genImage();
         if (!imgUrl) return;
 
         setMobileExportLink(imgUrl);
@@ -49,7 +46,7 @@ export default function Export() {
             {displayMobileExport && (
                 <Card>
                     <CardRow>
-                        <p style={{ color: "var(--text-dark)" }}>Tap and hold, then click Save Image</p>
+                        <p style={{ color: "var(--text-dark)" }}>Tap and hold, then click Save Image<br />Note: if you edit the image after opening this window, hit Mobile Export again</p>
                     </CardRow>
                     <CardRow>
                         <img src={mobileExportLink} style={{ maxWidth: "100%" }} />
@@ -74,3 +71,27 @@ const ContainerItem = styled.button`
     align-items: center;
     display: flex;
 `;
+
+async function pngToWebp(pngUrl: string, quality = 0.9): Promise<string> {
+    const img = new Image();
+    img.src = pngUrl;
+
+    await new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve();
+        img.onerror = () => reject(
+            new Error("Failed to load PNG")
+        );
+    });
+
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) throw new Error("Canvas context unavailable");
+
+    ctx.drawImage(img, 0, 0);
+
+    return canvas.toDataURL("image/webp", quality);
+}

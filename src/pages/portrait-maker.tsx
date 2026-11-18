@@ -35,7 +35,13 @@ export default function PortraitMaker() {
     const [renderContent, setRenderContent] = useState<SwgohPortraitOpts | null>(null);
     const [versionRef, setVersionRef] = useState<number>(0);
 
-    const renderer = useRef(createRenderer({ pixelRatio: 4, skipFonts: false }));
+    const previewRenderer = useRef(
+        createRenderer({ pixelRatio: 1, skipFonts: false })
+    );
+
+    const exportRenderer = useRef(
+        createRenderer({ pixelRatio: 4, skipFonts: false })
+    );
 
     const diffListeners = useRef(new Set<() => void>());
     const subscribe = (cb: () => void) => {
@@ -53,12 +59,12 @@ export default function PortraitMaker() {
         }
     };
 
-    const renderToCanvas = async () => {
+    async function renderToCanvas() {
         if (!ctx.renderRef.current || !ctx.canvasRef.current || !ctx.canvasCtxRef.current) return;
 
         await document.fonts.ready;
 
-        const png = await renderer.current.toPng(ctx.renderRef.current, {
+        const png = await previewRenderer.current.toPng(ctx.renderRef.current, {
             cacheBust: true,
             quality: 1,
         });
@@ -68,21 +74,33 @@ export default function PortraitMaker() {
 
         await new Promise<void>((resolve, reject) => {
             img.onload = () => resolve();
-            img.onerror = () => reject(new Error("Failed to load rendered image"));
+            img.onerror = () => reject(
+                new Error("Failed to load rendered image")
+            );
         });
 
-        ctx.canvasRef.current.width = img.width;
-        ctx.canvasRef.current.height = img.height;
+        const canvas = ctx.canvasRef.current;
+        const canvasCtx = ctx.canvasCtxRef.current;
 
-        ctx.canvasCtxRef.current.clearRect(
-            0,
-            0,
-            ctx.canvasRef.current.width,
-            ctx.canvasRef.current.height
-        );
+        canvas.width = img.width;
+        canvas.height = img.height;
 
-        ctx.canvasCtxRef.current.drawImage(img, 0, 0);
-    };
+        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+        canvasCtx.drawImage(img, 0, 0);
+    }
+
+    async function renderHighQuality(): Promise<string> {
+        if (!ctx.renderRef.current) {
+            throw new Error("Render element not found");
+        }
+
+        await document.fonts.ready;
+
+        return await exportRenderer.current.toPng(ctx.renderRef.current, {
+            cacheBust: true,
+            quality: 1,
+        });
+    }
 
     const notifyReady = () => {
         renderToCanvas()
@@ -119,6 +137,7 @@ export default function PortraitMaker() {
         versionRef: versionRef,
         setVersionRef,
         notifyReady: notifyReady,
+        renderHighQuality: renderHighQuality,
     }
 
     const [showAll, setShowAll] = useState(false);
