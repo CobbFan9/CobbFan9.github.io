@@ -2,3 +2,4 @@
 
 declare const __COMMIT_HASH__: string;
 declare const __APP_ENV__: string;
+declare const __APP_URL__: string;

@@ -23,7 +23,7 @@ export type PageDefinition = {
     PageMetaTags: React.ReactElement[];
 }
 
-const SiteLink = "https://CobbFan9.github.io";
+const SiteLink = __APP_URL__;
 const FaviconLink = SiteLink + "/favicon.ico";
 const FaviconPng = SiteLink + "/favicon.png";
 const SiteShortLink = "CobbFan9.github.io";

@@ -10,10 +10,15 @@ WORKDIR /app
 
 ENV APP_ENV="beta"
 
+ARG APP_URL
+ENV APP_URL=${APP_URL}
+
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
 COPY . .
+
+RUN pnpm generate
 
 RUN pnpm build
 

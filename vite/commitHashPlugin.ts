@@ -24,6 +24,9 @@ export default function commitHashPlugin(): Plugin {
                     __APP_ENV__: JSON.stringify(
                         process.env.APP_ENV ?? 'alpha'
                     ),
+                    __APP_URL__: JSON.stringify(
+                        process.env.APP_URL ?? 'https://CobbFan9.github.io'
+                    ),
                 },
             }
         },
