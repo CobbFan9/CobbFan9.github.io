@@ -18,15 +18,19 @@ export default function commitHashPlugin(): Plugin {
                 }
             }
 
+            let appUrl = process.env.APP_URL;
+            if (appUrl === undefined) {
+                console.info("Using standard url");
+                appUrl = 'https://CobbFan9.github.io';
+            }
+
             return {
                 define: {
                     __COMMIT_HASH__: JSON.stringify(hash),
                     __APP_ENV__: JSON.stringify(
                         process.env.APP_ENV ?? 'alpha'
                     ),
-                    __APP_URL__: JSON.stringify(
-                        process.env.APP_URL ?? 'https://CobbFan9.github.io'
-                    ),
+                    __APP_URL__: JSON.stringify(appUrl),
                 },
             }
         },
