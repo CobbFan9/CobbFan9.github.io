@@ -16,7 +16,7 @@
   "dependencies": {
     "@bufbuild/protobuf": "^2.16.0",
     "@cobbfan9/asset-studio-web": "^1.0.3",
-    "@cobbfan9/html-to-image": "^1.13.0",
+    "@cobbfan9/html-to-image": "^1.13.1",
     "chart.js": "^4.5.1",
     "chartjs-chart-matrix": "^3.1.0",
     "diff": "^9.0.0",
