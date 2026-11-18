@@ -2,4 +2,4 @@ allowBuilds:
   esbuild: true
   html-to-image: false
 minimumReleaseAgeExclude:
-  - '@cobbfan9/html-to-image@1.12.1'
+  - '@cobbfan9/*'

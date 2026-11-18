@@ -182,8 +182,8 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3
       '@cobbfan9/html-to-image':
-        specifier: ^1.12.1
-        version: 1.12.1
+        specifier: ^1.13.0
+        version: 1.13.0
       chart.js:
         specifier: ^4.5.1
         version: 4.6.1
@@ -330,8 +330,8 @@ packages:
   '@cobbfan9/asset-studio-web@1.0.3':
     resolution: {integrity: sha512-v2/VRlfxreSjfRB2BibvVw54vhpvhgEXezTCLgSk9kDc1vAJdCk5BB0K9of1VmJ6Lu+EBT/3bVsjvv4TzlJV7Q==}
 
-  '@cobbfan9/html-to-image@1.12.1':
-    resolution: {integrity: sha512-n18YZV5Gcr+uliiaYe5A8qsLpFZdiAxgPA+J08HlJbqQcCGE4SxBGMeDBSDMT7Z0D5iyFbMmN0tL6BEBdVJmww==}
+  '@cobbfan9/html-to-image@1.13.0':
+    resolution: {integrity: sha512-EHnphivta6aoaZLZmy5VVDFz0M1J3jB6H+RwNjx/q/xIHo8fsHIau9c6L/CcM4qvVK5fgbskYnN09v3i7zJ/Cg==}
 
   '@emnapi/core@2.0.0-beta.2':
     resolution: {integrity: sha512-MzCVoWtcg4Pm2B3je5mMvYMvj3MmBKw+fU7vbsJc9/iT8ip6/eYIHo/Dsm/mr+wsHB6SEyJDuxB09Yy6r/8+4A==}
@@ -1749,7 +1749,7 @@ snapshots:
     dependencies:
       '@lunapaint/png-codec': 0.2.0
 
-  '@cobbfan9/html-to-image@1.12.1': {}
+  '@cobbfan9/html-to-image@1.13.0': {}
 
   '@emnapi/core@2.0.0-beta.2':
     dependencies:
