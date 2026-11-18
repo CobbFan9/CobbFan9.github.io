@@ -13,10 +13,10 @@ export default function commitHashPlugin(): Plugin {
 
             let appUrl = process.env.APP_URL;
             if (appUrl === undefined) {
-                console.log("Using standard url");
+                console.log("[commit-hash-plugin] Using standard url");
                 appUrl = 'https://CobbFan9.github.io';
             } else {
-                console.log(`Using custom url: ${appUrl}`);
+                console.log(`[commit-hash-plugin] Using custom url: ${appUrl}`);
             }
 
             return {
