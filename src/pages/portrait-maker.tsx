@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import { createRenderer } from 'html-to-image'
+import { createRenderer } from '@cobbfan9/html-to-image'
 
 import type { PortraitMakerContext } from "../ts/portrait-maker/context";
 import { PortraitMakerCtx, usePortraitMakerCtx } from "../ts/portrait-maker/context"
