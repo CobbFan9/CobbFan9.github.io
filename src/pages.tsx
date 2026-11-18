@@ -179,11 +179,14 @@ export const Pages: PageDefinition[] = [
         PageTitle: `404 - ${SiteShortLink}`,
         PageElement: NotFound,
         PageMainPath: "*",
-        PageAliasPaths: [],
+        PageAliasPaths: [
+            "/404"
+        ],
         PageMetaTags: [
             <meta key="charset" charSet="UTF-8" />,
             <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1" />,
             <meta key="robots" name="robots" content="noindex, follow" />,
+            <link key="canonical" rel="canonical" href={`${SiteLink}/404`} />,
 
             <meta key="og-title" property="og:title" content={`Page Not Found — ${SiteShortLink}`} />,
             <meta key="og-prop" property="og:description" content="The page you're looking for could not be found." />,
@@ -195,7 +198,7 @@ export const Pages: PageDefinition[] = [
 function GenPageMetaTags(desc: string, pageName: string, pagePath: string): React.JSX.Element[] {
     return [
         <meta key="desc" name="description" content={`${SiteShortLink} - ${desc}`} />,
-        <link key="canonical" rel="canonical" href={SiteLink} />,
+        <link key="canonical" rel="canonical" href={`${SiteLink}${pagePath}`} />,
 
         <meta key="og-title" property="og:title" content={`${pageName} - ${SiteShortLink}`} />,
         <meta key="og-desc" property="og:description" content={`${SiteShortLink} - ${desc}`} />,

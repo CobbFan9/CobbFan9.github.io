@@ -77,13 +77,28 @@ ${metaTags}
 `, { parser: "html" });
 }
 
-async function generatePage(page: (typeof Pages)[number]): Promise<void> {
-    const outputFile = getOutputFile(page);
+async function generatePage(page: PageDefinition): Promise<void> {
+    const paths = [
+        page.PageMainPath,
+        ...page.PageAliasPaths,
+    ];
 
-    await fs.mkdir(path.posix.dirname(outputFile), { recursive: true });
-    await fs.writeFile(outputFile, await getPageHtml(page), "utf8");
+    for (const pagePath of paths) {
+        const outputFile = pagePath === "*"
+            ? path.posix.join(HTML_DIR, "404.html")
+            : pagePath === "/"
+                ? path.posix.join(HTML_DIR, "index.html")
+                : path.posix.join(
+                    HTML_DIR,
+                    pagePath.replace(/^\/+|\/+$/g, ""),
+                    "index.html"
+                );
 
-    console.log(`Generated: ${path.posix.relative(process.cwd(), outputFile)}`);
+        await fs.mkdir(path.posix.dirname(outputFile), { recursive: true });
+        await fs.writeFile(outputFile, await getPageHtml(page), "utf8");
+
+        console.log(`Generated: ${path.posix.relative(process.cwd(), outputFile)}`);
+    }
 }
 
 function getSitemapXml(): string {

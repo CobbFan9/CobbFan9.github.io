@@ -5,16 +5,16 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import prettier from "prettier";
 
-function getOutputFile(page, htmlDir) {
-    if (page.PageName === "404") {
+function getOutputFile(pagePath, htmlDir) {
+    if (pagePath === "*") {
         return path.join(htmlDir, "404.html");
     }
 
-    if (page.PageMainPath === "/") {
+    if (pagePath === "/") {
         return path.join(htmlDir, "index.html");
     }
 
-    const cleanPath = page.PageMainPath.replace(/^\/+|\/+$/g, "");
+    const cleanPath = pagePath.replace(/^\/+|\/+$/g, "");
 
     return path.join(htmlDir, cleanPath, "index.html");
 }
@@ -83,24 +83,33 @@ export default function devGenPlugin() {
             const missing = [];
 
             for (const page of Pages) {
-                const outputFile = getOutputFile(page, htmlDir);
-                const expected = await getExpectedHtml(page);
+                const paths = [
+                    page.PageMainPath,
+                    ...page.PageAliasPaths,
+                ];
 
-                let actual;
+                for (const pagePath of paths) {
+                    const outputFile = getOutputFile(pagePath, htmlDir);
+                    const expected = await getExpectedHtml(page);
 
-                try {
-                    actual = await fs.readFile(outputFile, "utf8");
-                } catch (error) {
-                    if (error.code === "ENOENT") {
-                        missing.push(page.PageName);
-                        continue;
+                    const pageLabel = `${page.PageName} (${pagePath})`;
+
+                    let actual;
+
+                    try {
+                        actual = await fs.readFile(outputFile, "utf8");
+                    } catch (error) {
+                        if (error.code === "ENOENT") {
+                            missing.push(pageLabel);
+                            continue;
+                        }
+
+                        throw error;
                     }
 
-                    throw error;
-                }
-
-                if (actual !== expected) {
-                    outdated.push(page.PageName);
+                    if (actual !== expected) {
+                        outdated.push(pageLabel);
+                    }
                 }
             }
 
