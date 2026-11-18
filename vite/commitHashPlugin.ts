@@ -9,13 +9,7 @@ export default function commitHashPlugin(): Plugin {
             let hash = 'dev'
 
             if (command === 'build') {
-                try {
-                    hash = execSync('git rev-parse --short HEAD', {
-                        encoding: 'utf8',
-                    }).trim()
-                } catch {
-                    hash = 'unknown'
-                }
+                hash = process.env.GIT_COMMIT?.slice(0, 7) ?? 'unknown'
             }
 
             let appUrl = process.env.APP_URL;

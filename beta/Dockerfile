@@ -13,6 +13,9 @@ ENV APP_ENV="beta"
 ARG APP_URL
 ENV APP_URL=${APP_URL}
 
+ARG RENDER_GIT_COMMIT
+ENV GIT_COMMIT=${RENDER_GIT_COMMIT}
+
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
