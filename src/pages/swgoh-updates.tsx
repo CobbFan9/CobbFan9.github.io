@@ -95,7 +95,7 @@ export default function SWGoHUpdates() {
                     </p>
                 </CardHeader>
 
-                <AppList cards={cards} />
+                <AppList cards={cards} cardHeight="200px" />
             </UpdatesCard>
         </UpdatesPage>
     );

@@ -9,13 +9,14 @@ export type AppCardModel = {
 
 type AppListProps = {
     cards: AppCardModel[];
+    cardHeight?: string;
 };
 
-export default function AppList({ cards }: AppListProps) {
+export default function AppList({ cards, cardHeight }: AppListProps) {
     return (
         <Applist>
             {cards.map((card) => (
-                <Appcard key={card.Title}>
+                <Appcard key={card.Title} $cardHeight={cardHeight}>
                     <Apptitle>{card.Title}</Apptitle>
                     <Appdesc>{card.Desc}</Appdesc>
                     {card.Link.startsWith("http") ? (
@@ -41,13 +42,15 @@ const Applist = styled.div`
     margin-top: 40px;
 `;
 
-const Appcard = styled.div`
+const Appcard = styled.div<{ $cardHeight?: string }>`
     background: var(--card-background-dark);
     border: 2px solid var(--border-dark);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
     padding: 30px 24px 24px;
     width: 260px;
+    height: ${({ $cardHeight }) => $cardHeight || "150px"};
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +76,7 @@ const Appdesc = styled.div`
 
 const ExternalLink = styled.a`
     display: inline-block;
-    margin-top: 10px;
+    margin-top: auto;
     cursor: pointer;
     color: white;
     background-color: var(--button);
@@ -92,7 +95,7 @@ const ExternalLink = styled.a`
 
 const Applink = styled(Link)`
     display: inline-block;
-    margin-top: 10px;
+    margin-top: auto;
     cursor: pointer;
     color: white;
     background-color: var(--button);
