@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Link from "./link";
+import ThemeSelector from "./themeSelect";
 
 const links = [
     { href: "#", text: "Back", isBack: true },
@@ -45,6 +46,8 @@ export default function NavBar() {
                         </li>
                     ))}
                 </NavLinks>
+
+                <ThemeSelector />
             </NavContainer>
         </Nav>
     );

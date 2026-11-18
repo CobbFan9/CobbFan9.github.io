@@ -204,7 +204,7 @@ const CopyButton = styled.button<{ $copied?: boolean }>`
     background: ${({ $copied }) =>
         $copied ? "#2e7d32" : "var(--button)"};
 
-    color: var(--text-dark);
+    color: white;
 
     border: 1px solid var(--border-dark);
     border-radius: 6px;
