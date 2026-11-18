@@ -82,6 +82,8 @@ export default function AssetExtractorWeb() {
 const Paragraph = styled.p`
     color: var(--text-dark);
 
+    overflow-wrap: anywhere;
+
     margin-top: 0px;
     margin-bottom: 0px;
 
