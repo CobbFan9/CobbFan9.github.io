@@ -11,6 +11,7 @@ export default function Footer() {
                     <Link to="/about">About</Link>
                     <Link to="/terms">Terms</Link>
                     <a href="https://discord.gg/cmZjsRBwTY" target="_blank" rel="noopener noreferrer">Discord</a>
+                    <Link to="/ai-use-policy">Ai Use Policy</Link>
                     <a href="https://github.com/CobbFan9/CobbFan9.github.io" target="_blank" rel="noopener noreferrer">Source Code</a>
                 </FooterLinks>
 

@@ -12,6 +12,7 @@ const NotFound = lazy(() => import("./pages/not-found"));
 const Calculators = lazy(() => import("./pages/calculators"));
 const CrystalCalc = lazy(() => import("./pages/calculators/crystal"));
 const ShardCalc = lazy(() => import("./pages/calculators/shard"));
+const AiUsePolicy = lazy(() => import("./pages/ai-use-policy"));
 
 export type PageDefinition = {
     PageName: string;
@@ -160,6 +161,17 @@ export const Pages: PageDefinition[] = [
         PageMetaTags: [
             ...defaultMeta,
             ...GenPageMetaTags("Star Wars: Galaxy of Heroes Shard Calculator", "SWGoH Shard Calculator", "/calc/shard"),
+        ],
+    },
+    {
+        PageName: "AI Use Policy",
+        PageTitle: `AI Use Policy - ${SiteShortLink}`,
+        PageElement: AiUsePolicy,
+        PageMainPath: "/ai-use-policy",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("CobbFan9's Ai Use Policy", "Ai Use Polict", "/ai-use-policy"),
         ],
     },
     {
