@@ -9,16 +9,15 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate": "tsx gen/generate-pages.tsx",
-    "postinstall": "pnpm --dir vendor/html-to-image install && pnpm --dir vendor/html-to-image run build"
+    "generate": "tsx gen/generate-pages.tsx"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.16.0",
     "@cobbfan9/asset-studio-web": "^1.0.3",
+    "@cobbfan9/html-to-image": "^1.12.1",
     "chart.js": "^4.5.1",
     "chartjs-chart-matrix": "^3.1.0",
     "diff": "^9.0.0",
-    "html-to-image": "file:vendor/html-to-image",
     "prettier": "^3.9.10",
     "react": "^19.3.1",
     "react-chartjs-2": "^5.3.1",
@@ -40,8 +39,7 @@
     "vite": "^8.3.4"
   },
   "allowScripts": {
-    "esbuild@0.28.2": true,
-    "file:../vendor/html-to-image": false
+    "esbuild@0.28.2": true
   },
   "engines": {
     "node": "v26.x"
