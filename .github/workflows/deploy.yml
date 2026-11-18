@@ -15,7 +15,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build-html-to-img:
+    uses: ./.github/workflows/build-html-to-img.yml
+
   build:
+    needs: build-html-to-img
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -35,13 +39,11 @@ jobs:
           cache: true
           install: false
 
-      - name: Install vendored dependency
-        working-directory: ./vendor/html-to-image
-        run: pnpm install --frozen-lockfile
-
-      - name: Build vendored dependency
-        working-directory: ./vendor/html-to-image
-        run: pnpm run build
+      - name: Download vendored dependency
+        uses: actions/download-artifact@v7
+        with:
+          name: html-to-image-build
+          path: vendor
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

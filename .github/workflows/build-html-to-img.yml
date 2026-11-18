@@ -1,0 +1,47 @@
+
+name: Build vendored dependencies
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+
+      - name: Set up pnpm
+        uses: pnpm/setup@v1
+        with:
+          version: 10.34.9
+          install: false
+
+      - name: Build html-to-image
+        working-directory: ./vendor/html-to-image
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run build
+
+      - name: Prepare artifact
+        run: |
+          mkdir -p artifact/html-to-image
+          cp vendor/html-to-image/package.json artifact/html-to-image/
+          cp -R vendor/html-to-image/es artifact/html-to-image/
+          cp -R vendor/html-to-image/lib artifact/html-to-image/
+          cp -R vendor/html-to-image/dist artifact/html-to-image/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: html-to-image-build
+          path: artifact/
+          retention-days: 1
+          if-no-files-found: error
