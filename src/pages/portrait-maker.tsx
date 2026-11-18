@@ -143,6 +143,10 @@ export default function PortraitMaker() {
     const [showAll, setShowAll] = useState(false);
 
     const showAllSetter = () => {
+        if (ctx.imageUrl === "") {
+            alert("You must upload an image before generating");
+            throw new Error("Missing imageUrl");
+        }
         setShowAll(true);
     };
 
