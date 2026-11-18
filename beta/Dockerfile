@@ -8,6 +8,8 @@ RUN npm install -g pnpm@12.21.0
 
 WORKDIR /app
 
+ENV APP_ENV="beta"
+
 COPY package.json pnpm-lock.yaml ./
 COPY pnpm-workspace.yaml ./
 COPY vendor/html-to-image ./vendor/html-to-image

@@ -7,7 +7,7 @@ const links = [
     { href: "/", text: "Home" },
     { href: "/swgoh-portrait-maker", text: "SWGoH Portrait Maker" },
     { href: "/swgoh-updates", text: "SWGoH Updates" },
-    { href: "/about", text: "About" },
+    { href: "/calc", text: "Calculators" },
 ];
 
 export default function NavBar() {
@@ -26,7 +26,7 @@ export default function NavBar() {
     return (
         <Nav>
             <NavContainer>
-                <Logo>SWGoH Updates</Logo>
+                <Logo>CobbFan9's Tools</Logo>
 
                 <MenuToggle aria-label="Toggle menu" onClick={() => setMenuOpen((prev) => !prev)}>
                     {menuOpen ? "✕" : "☰"}

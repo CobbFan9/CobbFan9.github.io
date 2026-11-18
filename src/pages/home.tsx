@@ -8,6 +8,11 @@ const appCardList: AppCardModel[] = [
         Link: "/swgoh-portrait-maker",
     },
     {
+        Title: "SWGoH Calculators",
+        Desc: "Various calculators for SWGoH",
+        Link: "/calc",
+    },
+    {
         Title: "SWGoH Updates",
         Desc: "Learn about the latest SWGoH updates as they happen",
         Link: "/swgoh-updates",
@@ -26,11 +31,6 @@ const appCardList: AppCardModel[] = [
         Title: "SWGoH Update Frequency",
         Desc: "See how frequently SWGoH updates",
         Link: "/update-frequency",
-    },
-    {
-        Title: "SWGoH Calculators",
-        Desc: "Various calculators for SWGoH",
-        Link: "/calc",
     },
 ];
 
