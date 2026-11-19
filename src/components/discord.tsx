@@ -32,6 +32,5 @@ const DiscordImg = styled.img`
 `
 
 const DiscordText = styled.p`
-    color: white !important;
     margin-bottom: 0px !important;
 `

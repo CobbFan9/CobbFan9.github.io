@@ -26,6 +26,5 @@ export default function CanvasView() {
 const Canvas = styled.canvas`
     width: 160px;
     height: 160px;
-    aspect-ratio: 1 / 1;
     border: 1px solid #ccc;
 `;

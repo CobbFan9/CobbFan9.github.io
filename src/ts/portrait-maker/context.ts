@@ -52,8 +52,6 @@ export type PortraitMakerContext = {
     setVersionRef: React.Dispatch<React.SetStateAction<number>>;
 
     notifyReady: () => void;
-
-    renderHighQuality: () => Promise<string>;
 }
 
 export function usePortraitMakerCtx() {

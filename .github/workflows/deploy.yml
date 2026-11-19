@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      APP_ENV: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -28,18 +26,11 @@ jobs:
         with:
           node-version: 26
 
-      - name: Set up pnpm
-        uses: pnpm/setup@v3
-        with:
-          version: 12.21.0
-          cache: true
-          install: false
-
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
-      - name: Build
-        run: pnpm run build
+      - name: Build Vite app
+        run: npm run build
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v5

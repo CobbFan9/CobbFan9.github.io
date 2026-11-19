@@ -1,5 +1,0 @@
-allowBuilds:
-  esbuild: true
-  html-to-image: false
-minimumReleaseAgeExclude:
-  - '@cobbfan9/*'

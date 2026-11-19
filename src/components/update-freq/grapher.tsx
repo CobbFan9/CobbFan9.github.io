@@ -5,9 +5,6 @@ import { MatrixController, MatrixElement } from "chartjs-chart-matrix";
 import { Chart } from "react-chartjs-2";
 import styled from "styled-components";
 
-import type { Theme } from "../../ts/theme";
-import { useThemeContext } from "../../ts/theme";
-
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -116,18 +113,15 @@ const LegendContainer = styled.div`
   font-size: 11px;
 `;
 
-const LegendCell = styled.div<{ $intensity: number; $theme: Theme; }>`
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-
-    background: ${({ $intensity, $theme }) =>
-        getHeatmapColor($intensity * 100, 100, $theme)
-    };
-
-    border: 1px solid ${({ $theme }) =>
-        $theme === "Light" ? "#E2E8F0" : "rgba(160, 160, 160, 0.15)"
-    };
+const LegendCell = styled.div<{ $intensity: number }>`
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: ${({ $intensity }) =>
+        $intensity === 0
+            ? "rgba(255, 255, 255, 0.035)"
+            : `rgba(212, 212, 212, ${0.12 + $intensity * 0.78})`};
+  border: 1px solid rgba(160, 160, 160, 0.15);
 `;
 
 function getDateFromTimestamp(timestamp: number): Date {
@@ -142,44 +136,15 @@ function formatTime(hour: number, minute: number): string {
         .padStart(2, "0")}`;
 }
 
-const CHART_THEMES = {
-    Light: {
-        empty: "#F1F5F9",
-        active: [37, 99, 235],
-        border: "#E2E8F0",
-        axis: "#64748B",
-        tooltipBackground: "#FFFFFF",
-        tooltipBorder: "#E2E8F0",
-        tooltipTitle: "#1E293B",
-        tooltipText: "#475569",
-    },
-    Dark: {
-        empty: "rgba(255, 255, 255, 0.035)",
-        active: [212, 212, 212],
-        border: "#2E2E2E",
-        axis: "#A0A0A0",
-        tooltipBackground: "#1E1E1E",
-        tooltipBorder: "#2E2E2E",
-        tooltipTitle: "#F5F5F5",
-        tooltipText: "#D4D4D4",
-    },
-};
-
-function getHeatmapColor(value: number, max: number, theme: Theme): string {
-    const palette = theme === "Light"
-        ? CHART_THEMES.Light
-        : CHART_THEMES.Dark;
-
+function getHeatmapColor(value: number, max: number): string {
     if (value === 0 || max === 0) {
-        return palette.empty;
+        return "rgba(255, 255, 255, 0.035)";
     }
 
     const intensity = value / max;
-    const alpha = 0.18 + intensity * 0.82;
+    const alpha = 0.12 + intensity * 0.78;
 
-    const [r, g, b] = palette.active;
-
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    return `rgba(212, 212, 212, ${alpha})`;
 }
 
 function formatDate(date?: Date): string {
@@ -201,12 +166,6 @@ export default function EventFrequencyChart({
     startDate,
     endDate,
 }: EventFrequencyHeatmapProps) {
-    const { themeContextSetter } = useThemeContext();
-
-    const theme = themeContextSetter.currentTheme;
-
-    const colors = theme === "Light" ? CHART_THEMES.Light : CHART_THEMES.Dark;
-
     const frequency = useMemo(() => {
         const counts = new Array<number>(TOTAL_BUCKETS).fill(0);
 
@@ -277,11 +236,10 @@ export default function EventFrequencyChart({
                         v: frequency[index],
                     })),
                     backgroundColor: (context: ScriptableContext<"matrix">) => {
-                        const point = context.raw as | { x: number; y: number; v: number } | undefined;
-
-                        return getHeatmapColor(point?.v ?? 0, maxFrequency, theme);
+                        const point = context.raw as { x: number; y: number; v: number } | undefined;
+                        return getHeatmapColor(point?.v ?? 0, maxFrequency);
                     },
-                    borderColor: colors.border,
+                    borderColor: "rgba(160, 160, 160, 0.12)",
                     borderWidth: 1,
                     borderRadius: 2,
                     width: ({ chart }: { chart: ChartJS }) =>
@@ -295,7 +253,7 @@ export default function EventFrequencyChart({
                 },
             ],
         }),
-        [frequency, maxFrequency, type, theme]
+        [frequency, maxFrequency, type]
     );
 
     const options = useMemo<ChartOptions<"matrix">>(
@@ -477,7 +435,6 @@ export default function EventFrequencyChart({
                             <LegendCell
                                 key={intensity}
                                 $intensity={intensity}
-                                $theme={theme}
                             />
                         ))}
                         <span>More</span>

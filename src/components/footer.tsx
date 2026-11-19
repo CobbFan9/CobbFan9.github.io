@@ -11,16 +11,12 @@ export default function Footer() {
                     <Link to="/about">About</Link>
                     <Link to="/terms">Terms</Link>
                     <a href="https://discord.gg/cmZjsRBwTY" target="_blank" rel="noopener noreferrer">Discord</a>
-                    <Link to="/ai-use-policy">Ai Use Policy</Link>
                     <a href="https://github.com/CobbFan9/CobbFan9.github.io" target="_blank" rel="noopener noreferrer">Source Code</a>
                 </FooterLinks>
 
                 <FooterText>
                     © 2026 CobbFan9
                     <br></br>CobbFan9 is not affiliated with EA, CG, Disney, or Lucasfilm LTD.
-                    <BuildInfo>
-                        Environment: {__APP_ENV__.toUpperCase()} · Revision: {__COMMIT_HASH__}
-                    </BuildInfo>
                 </FooterText>
             </FooterContent>
         </FooterContainer>
@@ -63,10 +59,4 @@ const FooterLinks = styled.div`
 const FooterText = styled.div`
     color: var(--text-secondary-dark);
     font-size: 0.9rem;
-`;
-
-const BuildInfo = styled.div`
-    margin-top: 8px;
-    font-size: 0.75rem;
-    opacity: 0.8;
 `;

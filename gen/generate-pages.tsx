@@ -27,6 +27,20 @@ export type PageDefinition = {
 const DIST_DIR = path.posix.resolve("./");
 const HTML_DIR = path.posix.join(DIST_DIR, "html");
 
+function getOutputFile(page: PageDefinition): string {
+    if (page.PageName === "404") {
+        return path.posix.join(HTML_DIR, "404.html");
+    }
+
+    if (page.PageMainPath === "/") {
+        return path.posix.join(HTML_DIR, "index.html");
+    }
+
+    const cleanPath = page.PageMainPath.replace(/^\/+|\/+$/g, "");
+
+    return path.posix.join(HTML_DIR, cleanPath, "index.html");
+}
+
 async function getPageHtml(page: PageDefinition): Promise<string> {
     const metaTags = renderToStaticMarkup(
         <>
@@ -63,28 +77,13 @@ ${metaTags}
 `, { parser: "html" });
 }
 
-async function generatePage(page: PageDefinition): Promise<void> {
-    const paths = [
-        page.PageMainPath,
-        ...page.PageAliasPaths,
-    ];
+async function generatePage(page: (typeof Pages)[number]): Promise<void> {
+    const outputFile = getOutputFile(page);
 
-    for (const pagePath of paths) {
-        const outputFile = pagePath === "*"
-            ? path.posix.join(HTML_DIR, "404.html")
-            : pagePath === "/"
-                ? path.posix.join(HTML_DIR, "index.html")
-                : path.posix.join(
-                    HTML_DIR,
-                    pagePath.replace(/^\/+|\/+$/g, ""),
-                    "index.html"
-                );
+    await fs.mkdir(path.posix.dirname(outputFile), { recursive: true });
+    await fs.writeFile(outputFile, await getPageHtml(page), "utf8");
 
-        await fs.mkdir(path.posix.dirname(outputFile), { recursive: true });
-        await fs.writeFile(outputFile, await getPageHtml(page), "utf8");
-
-        console.log(`Generated: ${path.posix.relative(process.cwd(), outputFile)}`);
-    }
+    console.log(`Generated: ${path.posix.relative(process.cwd(), outputFile)}`);
 }
 
 function getSitemapXml(): string {
@@ -131,19 +130,13 @@ import react from '@vitejs/plugin-react'
 import moveHtmlPlugin from "./vite/moveHtmlPlugin.js";
 //@ts-ignore
 import devHtmlPlugin from "./vite/devHtmlPlugin.js";
-//@ts-ignore
-import devGenPlugin from "./vite/devGenPlugin.js";
-//@ts-ignore
-import commitHashPlugin from "./vite/commitHashPlugin.ts";
 
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [
         react(),
         moveHtmlPlugin(),
-        devHtmlPlugin(),
-        devGenPlugin(),
-        commitHashPlugin(),
+        devHtmlPlugin()
     ],
     build: {
         rollupOptions: {

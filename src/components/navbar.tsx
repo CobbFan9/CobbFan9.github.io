@@ -1,20 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Link from "./link";
-import ThemeSelector from "./themeSelect";
 
-type navLink = {
-    href: string;
-    text: string;
-    isBack?: boolean;
-}
-
-const links: navLink[] = [
+const links = [
     { href: "#", text: "Back", isBack: true },
     { href: "/", text: "Home" },
     { href: "/swgoh-portrait-maker", text: "SWGoH Portrait Maker" },
     { href: "/swgoh-updates", text: "SWGoH Updates" },
-    { href: "/calc", text: "Calculators" },
+    { href: "/about", text: "About" },
 ];
 
 export default function NavBar() {
@@ -33,9 +26,7 @@ export default function NavBar() {
     return (
         <Nav>
             <NavContainer>
-                <Logo to="/" onClick={closeMenu}>
-                    CobbFan9's Tools
-                </Logo>
+                <Logo>SWGoH Updates</Logo>
 
                 <MenuToggle aria-label="Toggle menu" onClick={() => setMenuOpen((prev) => !prev)}>
                     {menuOpen ? "✕" : "☰"}
@@ -54,8 +45,6 @@ export default function NavBar() {
                         </li>
                     ))}
                 </NavLinks>
-
-                <ThemeSelector />
             </NavContainer>
         </Nav>
     );
@@ -78,16 +67,10 @@ const NavContainer = styled.div`
     margin: 0 auto;
 `;
 
-const Logo = styled(Link)`
+const Logo = styled.div`
     font-weight: bold;
     color: var(--text-dark);
     font-size: 1.2em;
-    text-decoration: none;
-    cursor: pointer;
-
-    &:hover {
-        opacity: 0.8;
-    }
 `;
 
 const MenuToggle = styled.button`

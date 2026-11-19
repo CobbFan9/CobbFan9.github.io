@@ -140,12 +140,6 @@ const InputSpan = styled.span`
         box-shadow: 0 0 0 2px var(--button-hover);
     }
 
-    input[type="text"]:hover,
-    input[type="number"]:hover,
-    select:hover {
-        color: white;
-    }
-
     select {
         width: 416px;
         height: 41.6px;
