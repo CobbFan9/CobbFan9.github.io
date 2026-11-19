@@ -39,7 +39,7 @@ export default function AssetExtractorWeb() {
                     <Paragraph>
                         Asset Extractor Web is a tool to download and extract SWGoH assets from the browser. Yes, everything is done inside the browser.<br />
                         This is made possible by
-                        <br /><a href="https://www.npmjs.com/package/@lego-fan9/asset-studio-web" target="_blank" rel="noopener noreferrer">https://www.npmjs.com/package/@lego-fan9/asset-studio-web</a><br />
+                        <br /><a href="https://www.npmjs.com/package/@cobbfan9/asset-studio-web" target="_blank" rel="noopener noreferrer">https://www.npmjs.com/package/@cobbfan9/asset-studio-web</a><br />
                         The reason it needs an NPM package is because the Unity bundle extraction is browser side. I spent way too much time making it browser side.
                     </Paragraph>
                 </CardRow>
@@ -81,6 +81,8 @@ export default function AssetExtractorWeb() {
 
 const Paragraph = styled.p`
     color: var(--text-dark);
+
+    overflow-wrap: anywhere;
 
     margin-top: 0px;
     margin-bottom: 0px;

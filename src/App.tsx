@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import styled from "styled-components";
 
 import Navbar from "./components/navbar";
@@ -10,7 +10,25 @@ import GoatCounter from "./components/goatCounter";
 
 import { Pages } from "./pages";
 
+import type { ThemeContext, Theme } from "./ts/theme";
+import { ThemeCtx, ThemeContextSetter } from "./ts/theme";
+
 export default function App() {
+	const storedTheme = localStorage.getItem("theme") as Theme | undefined;
+	const [theme, setTheme] = useState<Theme>(storedTheme ?? "Default");
+
+	let themeCtx: ThemeContext = {
+		themeContextSetter: new ThemeContextSetter(theme, setTheme)
+	}
+
+	return (
+		<ThemeCtx.Provider value={themeCtx}>
+			<MainApp />
+		</ThemeCtx.Provider>
+	)
+}
+
+function MainApp() {
 	const path = window.location.pathname.replace(/\/$/, "") || "/";
 
 	const page = Pages.find((pageDefinition) => {

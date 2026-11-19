@@ -14,10 +14,12 @@ export default function About() {
                 <li><a href="https://github.com/CobbFan9/swgoh-assetapi">SWGoH AssetAPI</a> An asset datamining tool for SWGoH
                 </li>
                 <li><Link to="/loc-bundle-format">SWGoH Localization Bundle Parser</Link> A tool to explore SWGoH Localization Bundles</li>
-                <li><Link to="/asset-extractor-web">Asset Extractor Web</Link> A showcase of another project, <a href="https://www.npmjs.com/package/@lego-fan9/asset-studio-web">asset-studio-web</a></li>
+                <li><Link to="/asset-extractor-web">Asset Extractor Web</Link> A showcase of another project, <a href="https://www.npmjs.com/package/@cobbfan9/asset-studio-web">asset-studio-web</a></li>
                 <li><Link to="/update-freq">SWGoH Update Frequency</Link> Shows the frequency of updates in SWGoH</li>
             </ul>
-            <p>There are more plans for the future, but for now I think thats all. MTFBWY</p>
+            <p>And I have more plans than time for more!</p>
+            <p>You can find my views on AI, and it's use in this site at the <Link to="/ai-use-policy">Ai Use Policy</Link></p>
+            <p>Hope you enjoy, and may the force be with you!</p>
         </AboutPage>
     )
 }

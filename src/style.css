@@ -23,6 +23,14 @@
     --button-loading-hover: #b45309;
     --button-failed: #dc2626;
     --button-failed-hover: #b91c1c;
+
+    @font-face {
+        font-family: 'TradeGothic';
+        src: url('/portraitMakerImages/TradeGothicLTCom-BdCn20.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
 }
 
 body {
@@ -30,6 +38,15 @@ body {
     text-align: center;
     margin: 0;
     background-color: var(--background-color-dark);
+}
+
+p,
+h1,
+h2,
+h3,
+li,
+label {
+    color: var(--text-dark);
 }
 
 .common-button {
@@ -91,4 +108,12 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-hover-dark);
+}
+
+.truncate-select {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
