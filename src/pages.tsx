@@ -9,6 +9,10 @@ const Terms = lazy(() => import("./pages/terms"));
 const AssetExtractorWeb = lazy(() => import("./pages/asset-extractor-web"));
 const UpdateFreqPage = lazy(() => import("./pages/update-freq"));
 const NotFound = lazy(() => import("./pages/not-found"));
+const Calculators = lazy(() => import("./pages/calculators"));
+const CrystalCalc = lazy(() => import("./pages/calculators/crystal"));
+const ShardCalc = lazy(() => import("./pages/calculators/shard"));
+const AiUsePolicy = lazy(() => import("./pages/ai-use-policy"));
 
 export type PageDefinition = {
     PageName: string;
@@ -19,7 +23,7 @@ export type PageDefinition = {
     PageMetaTags: React.ReactElement[];
 }
 
-const SiteLink = "https://CobbFan9.github.io";
+const SiteLink = __APP_URL__;
 const FaviconLink = SiteLink + "/favicon.ico";
 const FaviconPng = SiteLink + "/favicon.png";
 const SiteShortLink = "CobbFan9.github.io";
@@ -127,15 +131,62 @@ export const Pages: PageDefinition[] = [
         ]
     },
     {
+        PageName: "SWGoH Calculators",
+        PageTitle: `SWGoH Calculators - ${SiteShortLink}`,
+        PageElement: Calculators,
+        PageMainPath: "/calc",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("Star Wars: Galaxy of Heroes Calculators", "SWGoH Calculators", "/calc"),
+        ],
+    },
+    {
+        PageName: "SWGoH Crystal Calculator",
+        PageTitle: `SWGoH Crystal Calculator - ${SiteShortLink}`,
+        PageElement: CrystalCalc,
+        PageMainPath: "/calc/crystal",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("Star Wars: Galaxy of Heroes Crystal Calculator", "SWGoH Crystal Calculator", "/calc/crystal"),
+        ],
+    },
+    {
+        PageName: "SWGoH Shard Calculator",
+        PageTitle: `SWGoH Shard Calculator - ${SiteShortLink}`,
+        PageElement: ShardCalc,
+        PageMainPath: "/calc/shard",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("Star Wars: Galaxy of Heroes Shard Calculator", "SWGoH Shard Calculator", "/calc/shard"),
+        ],
+    },
+    {
+        PageName: "AI Use Policy",
+        PageTitle: `AI Use Policy - ${SiteShortLink}`,
+        PageElement: AiUsePolicy,
+        PageMainPath: "/ai-use-policy",
+        PageAliasPaths: [],
+        PageMetaTags: [
+            ...defaultMeta,
+            ...GenPageMetaTags("CobbFan9's Ai Use Policy", "Ai Use Polict", "/ai-use-policy"),
+        ],
+    },
+    {
         PageName: "404",
         PageTitle: `404 - ${SiteShortLink}`,
         PageElement: NotFound,
         PageMainPath: "*",
-        PageAliasPaths: [],
+        PageAliasPaths: [
+            "/404"
+        ],
         PageMetaTags: [
             <meta key="charset" charSet="UTF-8" />,
             <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1" />,
             <meta key="robots" name="robots" content="noindex, follow" />,
+            <link key="canonical" rel="canonical" href={`${SiteLink}/404`} />,
 
             <meta key="og-title" property="og:title" content={`Page Not Found — ${SiteShortLink}`} />,
             <meta key="og-prop" property="og:description" content="The page you're looking for could not be found." />,
@@ -147,7 +198,7 @@ export const Pages: PageDefinition[] = [
 function GenPageMetaTags(desc: string, pageName: string, pagePath: string): React.JSX.Element[] {
     return [
         <meta key="desc" name="description" content={`${SiteShortLink} - ${desc}`} />,
-        <link key="canonical" rel="canonical" href={SiteLink} />,
+        <link key="canonical" rel="canonical" href={`${SiteLink}${pagePath}`} />,
 
         <meta key="og-title" property="og:title" content={`${pageName} - ${SiteShortLink}`} />,
         <meta key="og-desc" property="og:description" content={`${SiteShortLink} - ${desc}`} />,

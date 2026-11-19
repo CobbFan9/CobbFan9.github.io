@@ -3,20 +3,23 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@12.21.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate": "tsx gen/generate-pages.tsx"
+    "generate:pages": "tsx gen/generate-pages.tsx",
+    "generate:favicons": "tsx gen/generate-favicons.ts ./public",
+    "generate": "pnpm run generate:pages && pnpm run generate:favicons"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.16.0",
-    "@lego-fan9/asset-studio-web": "^0.2.3",
+    "@cobbfan9/asset-studio-web": "^1.0.3",
+    "@cobbfan9/html-to-image": "^1.13.1",
     "chart.js": "^4.5.1",
     "chartjs-chart-matrix": "^3.1.0",
     "diff": "^9.0.0",
-    "html-to-image": "^1.11.13",
     "prettier": "^3.9.10",
     "react": "^19.3.0",
     "react-chartjs-2": "^5.3.1",
@@ -33,6 +36,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17.13.0",
+    "sharp": "^0.35.5",
     "tsx": "^4.23.15",
     "typescript": "~7.0.2",
     "vite": "^8.3.4"

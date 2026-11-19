@@ -53,16 +53,16 @@ type AbilityOrRelicProps = {
 };
 
 function AbilityOrRelic({ label, startValue, onChange }: AbilityOrRelicProps) {
+    const inputId = `abilityOrRelic_${label}`;
+
     return (
         <InputGroup>
-            <label htmlFor={`abilityOrRelic_${label}_${startValue}`}>{label}</label>
+            <label htmlFor={inputId}>{label}</label>
             <InputWrapper>
-                <input type="number" id={`abilityOrRelic_${label}_${startValue}`} min="-999" max="999" 
-                defaultValue={startValue} onChange={(e) => onChange(Number(e.target.value))} 
-                onWheel={(e) => (e.currentTarget as HTMLInputElement).blur()} />
+                <input type="number" id={inputId} min="-999" max="999" defaultValue={startValue} onChange={(e) => onChange(Number(e.target.value))} onWheel={(e) => e.currentTarget.blur()} />
             </InputWrapper>
         </InputGroup>
-    )
+    );
 }
 
 const InputGroup = styled.div`
@@ -130,9 +130,9 @@ function AlignmentSwitch() {
     return (
         <CardRow>
             <AlignContainer>
-                <label htmlFor="switch">Alignment:</label>
+                <label htmlFor="align_switch">Alignment:</label>
                 <AlignSwitch type="range" min="0" max="2" defaultValue="1" step="1" 
-                $alignment={alignment} onChange={(e) => onChange(e)} />
+                $alignment={alignment} onChange={(e) => onChange(e)} id="align_switch" />
                 <AlignSwitchVals>
                     <span>Dark</span>
                     <span>Neutral</span>

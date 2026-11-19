@@ -90,6 +90,7 @@ const ListRowButton = styled.button`
     &:hover {
         border-color: var(--border-hover-dark);
         background: var(--button);
+        color: white;
     }
 
     &:active {

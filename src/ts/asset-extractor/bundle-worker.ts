@@ -1,4 +1,4 @@
-import { AssetsManager, ExportTexture2D, Texture2D } from "@lego-fan9/asset-studio-web";
+import { AssetsManager, ExportTexture2D, Texture2D } from "@cobbfan9/asset-studio-web";
 import type { RequestEnvelopePayload, InitPayload } from "./RequestEnvelope";
 import { RequestEnvelope } from "./RequestEnvelope";
 import type { ImageType } from "./imageType";
