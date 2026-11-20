@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       APP_ENV: production
+      GIT_COMMIT: ${{ github.sha }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
