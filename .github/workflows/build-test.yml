@@ -54,6 +54,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: 
       - test-generate
+    env: 
+      GIT_COMMIT: ${{ github.sha }}
+      APP_ENV: stage
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
