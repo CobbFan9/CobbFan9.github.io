@@ -25,7 +25,7 @@ export default function Options({ setTimeTo7 }: OptionsProps) {
             const timeNeeded = simsNeeded / Number(simsPerDay);
 
             if (accelerated === "1") {
-                setTimeTo7(timeNeeded * 2);
+                setTimeTo7(timeNeeded / 2);
             } else {
                 setTimeTo7(timeNeeded);
             }
